@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: EnvironmentMonitoringSystem.sln 
+      Solution_Name: AssistPurchase.sln 
  
     steps:
     - name: Checkout
