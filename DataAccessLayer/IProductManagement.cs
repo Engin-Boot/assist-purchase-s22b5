@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataAccessLayer
+﻿namespace DataAccessLayer
 {
-    interface Interface1
+    interface IProductManagement
     {
     }
 }
