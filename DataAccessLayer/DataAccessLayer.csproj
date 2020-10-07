@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ProductManagement\" />
+    <Compile Remove="ProductManagement\**" />
+    <EmbeddedResource Remove="ProductManagement\**" />
+    <None Remove="ProductManagement\**" />
   </ItemGroup>
 
 </Project>
