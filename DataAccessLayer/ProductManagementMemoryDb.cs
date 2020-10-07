@@ -57,21 +57,13 @@ namespace DataAccessLayer
 
         public bool UpdateProduct(ProductDataModel product)
         {
-            try
+            for (var index = 0; index < Db.Count; index++) 
             {
-                for (var index = 0; index < Db.Count; index++)
-                {
                     if (Db[index].Id != product.Id) continue;
                     Db.RemoveAt(index);
                     Db.Insert(index,product);
                     return true;
-                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
             return false;
         }
     }
