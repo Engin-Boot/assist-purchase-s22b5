@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatAPITest", "ChatAPITest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{FAA62093-EE37-4EE1-BAAC-26B6B6D7CCDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayerTest", "DataAccessLayerTest\DataAccessLayerTest.csproj", "{FCABE76F-06A5-4000-B1E0-B89F232F027B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCABE76F-06A5-4000-B1E0-B89F232F027B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCABE76F-06A5-4000-B1E0-B89F232F027B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCABE76F-06A5-4000-B1E0-B89F232F027B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCABE76F-06A5-4000-B1E0-B89F232F027B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

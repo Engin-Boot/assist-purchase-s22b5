@@ -1,6 +1,12 @@
-﻿namespace DataAccessLayer
+﻿using DataModel;
+using System.Collections.Generic;
+namespace DataAccessLayer
 {
-    interface IProductManagement
+    public interface IProductManagement
     {
+        bool AddProduct(ProductDataModel product);
+        bool RemoveProduct(ProductDataModel product);
+        IEnumerable<ProductDataModel> ShowAllProducts();
+        bool UpdateProduct(ProductDataModel product);
     }
 }

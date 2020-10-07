@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataModel
+﻿namespace DataModel
 {
-    class ProductDataModel
+    public class ProductDataModel
     {
+        public string Id { get; set; }
     }
 }
