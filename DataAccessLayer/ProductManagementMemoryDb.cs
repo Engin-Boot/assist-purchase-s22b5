@@ -8,7 +8,7 @@ namespace DataAccessLayer
 {
     public class ProductManagementMemoryDb:IProductManagement
     {
-        private static List<ProductDataModel> Db=new List<ProductDataModel>();
+        private static readonly List<ProductDataModel> Db=new List<ProductDataModel>();
 
         public ProductManagementMemoryDb()
         {
@@ -49,7 +49,7 @@ namespace DataAccessLayer
                 ProductPrice = 3000000,
                 ProductWeight = 3000,
                 MonitorResolution = "1024*1020",
-                Measurement = new List<string>(){}
+                Measurement = new List<string>()
             });
         }
         public bool AddProduct(ProductDataModel product, ITransactionManager manager)
@@ -57,7 +57,7 @@ namespace DataAccessLayer
             manager.GetTransaction();
             try
             {
-                if (!string.IsNullOrEmpty(product.Id))
+                if (!string.IsNullOrEmpty(product.Id) && CheckIdExists(product))
                 {
                     Db.Add(product);
                     return true;
@@ -70,6 +70,12 @@ namespace DataAccessLayer
 
             return false;
         }
+
+        private static bool CheckIdExists(ProductDataModel product)
+        {
+            return Db.All(products => products.Id != product.Id);
+        }
+
 
         public bool RemoveProduct(ProductDataModel product, ITransactionManager manager)
         {
@@ -90,7 +96,7 @@ namespace DataAccessLayer
             return false;
         }
 
-        public IEnumerable<ProductDataModel> ShowAllProducts(ITransactionManager manager)
+        public IEnumerable<ProductDataModel> GetAllProducts(ITransactionManager manager)
         {
             manager.GetTransaction();
             return Db;
