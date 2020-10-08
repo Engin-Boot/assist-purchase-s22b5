@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using DataModel;
@@ -16,7 +17,19 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestAddProduct()
         {
-            var testProd = new ProductDataModel {Id = "id3"};
+            var testProd = new ProductDataModel {
+                ProductName = "IntelliVue X3",
+                Id = "id1",
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
             Assert.True(_productManagement.AddProduct(testProd));
             testProd=new ProductDataModel();
             Assert.False(_productManagement.AddProduct(testProd));
@@ -24,17 +37,65 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestRemoveProduct()
         {
-            var testProd = new ProductDataModel { Id = "id1" };
+            var testProd = new ProductDataModel {
+                ProductName = "IntelliVue X3",
+                Id = "id1",
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
             Assert.True(_productManagement.RemoveProduct(testProd));
-            testProd=new ProductDataModel{Id="RandomId"};
+            testProd=new ProductDataModel{
+                ProductName = "IntelliVue X3",
+                Id = "RandomId",
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
             Assert.False(_productManagement.RemoveProduct(testProd));
         }
         [Fact]
         public void TestUpdateProduct()
         {
-            var testProd = new ProductDataModel { Id = "id1" };
+            var testProd = new ProductDataModel {
+                ProductName = "IntelliVue X3",
+                Id = "id1",
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
             Assert.True(_productManagement.UpdateProduct(testProd));
-            testProd = new ProductDataModel { Id = "RandomId" };
+            testProd = new ProductDataModel {
+                ProductName = "IntelliVue X3",
+                Id = "randomId",
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
             Assert.False(_productManagement.UpdateProduct(testProd));
         }
         [Fact]

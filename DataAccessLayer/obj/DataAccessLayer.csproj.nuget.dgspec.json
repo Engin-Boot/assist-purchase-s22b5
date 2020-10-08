@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {}
+    "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj",
-        "packagesPath": "C:\\Users\\320087402\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\obj\\",
+        "projectPath": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\320087400\\.nuget\\packages\\",
+        "outputPath": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\320087402\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\320087400\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj": {
-                "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj"
+              "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\DataModel.csproj": {
+                "projectPath": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\DataModel.csproj"
               }
             }
           }
@@ -56,21 +56,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj": {
+    "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\DataModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj",
+        "projectUniqueName": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\DataModel.csproj",
         "projectName": "DataModel",
-        "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj",
-        "packagesPath": "C:\\Users\\320087402\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\obj\\",
+        "projectPath": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\DataModel.csproj",
+        "packagesPath": "C:\\Users\\320087400\\.nuget\\packages\\",
+        "outputPath": "C:\\Bootcamp-Github\\assist-purchase-s22b5\\DataModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\320087402\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\320087400\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -108,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

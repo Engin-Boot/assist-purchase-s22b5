@@ -7,18 +7,22 @@ namespace DataAccessLayer
 {
     public class ProductManagementMemoryDb:IProductManagement
     {
-        private static readonly List<ProductDataModel> Db=new List<ProductDataModel>();
+        private static List<ProductDataModel> Db=new List<ProductDataModel>();
 
         public ProductManagementMemoryDb()
         {
-            Db.Add(new ProductDataModel{ ProductName = "IntelliVue X3",
+            Db.Add(new ProductDataModel{ 
+                ProductName = "IntelliVue X3",
                 Id = "id1",
                 ProductSeries = "Intellivue", 
                 ProductModel = "X3",
                 ProductPrice = 1000000,
                 ProductWeight = 1000,
                 MonitorResolution = "1024*720",
-                Measurement = {"SPO2", "ECG"}
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
             });
             Db.Add(new ProductDataModel
             {
@@ -29,7 +33,10 @@ namespace DataAccessLayer
                 ProductPrice = 2000000,
                 ProductWeight = 2000,
                 MonitorResolution = "1024*920",
-                Measurement = { "SPO2" }
+                Measurement = new List<string>()
+                {
+                    "SPO2"
+                }
             });
 
             Db.Add(new ProductDataModel
@@ -41,7 +48,7 @@ namespace DataAccessLayer
                 ProductPrice = 3000000,
                 ProductWeight = 3000,
                 MonitorResolution = "1024*1020",
-                Measurement = {}
+                Measurement = new List<string>(){}
             });
         }
         public bool AddProduct(ProductDataModel product)
