@@ -1,12 +1,14 @@
 ﻿using DataModel;
 using System.Collections.Generic;
+using DataAccessLayer.Utils;
+
 namespace DataAccessLayer
 {
     public interface IProductManagement
     {
-        bool AddProduct(ProductDataModel product);
-        bool RemoveProduct(ProductDataModel product);
-        IEnumerable<ProductDataModel> ShowAllProducts();
-        bool UpdateProduct(ProductDataModel product);
+        bool AddProduct(ProductDataModel product, ITransactionManager manager);
+        bool RemoveProduct(ProductDataModel product, ITransactionManager manager);
+        IEnumerable<ProductDataModel> ShowAllProducts(ITransactionManager manager);
+        bool UpdateProduct(ProductDataModel product, ITransactionManager manager);
     }
 }

@@ -1797,6 +1797,29 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "DataAccessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DataModel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        }
+      },
+      "DataModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DataModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataModel.dll": {}
+        }
       }
     }
   },
@@ -6061,10 +6084,21 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "DataAccessLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataAccessLayer/DataAccessLayer.csproj",
+      "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
+    },
+    "DataModel/1.0.0": {
+      "type": "project",
+      "path": "../DataModel/DataModel.csproj",
+      "msbuildProject": "../DataModel/DataModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "DataAccessLayer >= 1.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4"
     ]
   },
@@ -6093,7 +6127,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

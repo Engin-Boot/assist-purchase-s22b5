@@ -13,30 +13,35 @@ namespace ChatAPI.Controllers
         {
             return new[] { "value1", "value2" };
         }
-
-       /* // GET: api/ChatApp/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("FilterByPrice")]
+        public IEnumerable<string> FilterByPrivce()
         {
-            return "value";
+            return new[] { "value3", "valu4" };
         }
 
-        // POST: api/ChatApp
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        /* // GET: api/ChatApp/5
+         [HttpGet("{id}", Name = "Get")]
+         public string Get(int id)
+         {
+             return "value";
+         }
 
-        // PUT: api/ChatApp/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+         // POST: api/ChatApp
+         [HttpPost]
+         public void Post([FromBody] string value)
+         {
+         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
+         // PUT: api/ChatApp/5
+         [HttpPut("{id}")]
+         public void Put(int id, [FromBody] string value)
+         {
+         }
+
+         // DELETE: api/ApiWithActions/5
+         [HttpDelete("{id}")]
+         public void Delete(int id)
+         {
+         }*/
     }
 }
