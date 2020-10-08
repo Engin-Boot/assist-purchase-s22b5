@@ -28,6 +28,7 @@ namespace ChatAPI.Controllers
         [HttpPost]
         public bool AddProduct([FromBody ] ProductDataModel product)
         {
+            product.Id = 0;
             return _product.AddProduct(product, GeTransactionObjectFromContainer());
         }
 

@@ -5,7 +5,7 @@ namespace DataModel
     public class ProductDataModel
     {
         public string ProductName { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string ProductSeries { get; set; }
         public string ProductModel { get; set; }
         public double ProductPrice { get; set; }
