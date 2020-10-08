@@ -182,7 +182,6 @@ C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\bin\Debug\netcoreapp3.1\zh-
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\obj\Debug\netcoreapp3.1\ChatAPITest.csprojAssemblyReference.cache
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\obj\Debug\netcoreapp3.1\ChatAPITest.csproj.CoreCompileInputs.cache
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\obj\Debug\netcoreapp3.1\ChatAPITest.AssemblyInfoInputs.cache
 C:\Bootcamp-Github\assist-purchase-s22b5\ChatAPITest\obj\Debug\netcoreapp3.1\ChatAPITest.AssemblyInfo.cs
