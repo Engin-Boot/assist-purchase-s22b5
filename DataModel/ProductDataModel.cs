@@ -11,7 +11,7 @@ namespace DataModel
         public double ProductPrice { get; set; }
         public double ProductWeight { get; set; }
         public bool Portable { get; set; }
-        public    string MonitorResolution { get; set; }
+        public string MonitorResolution { get; set; }
         public List<string> Measurement { get; set; }
 
 
