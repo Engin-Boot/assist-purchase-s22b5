@@ -1,23 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DataAccessLayer;
+using DataAccessLayer.Utils;
+using DataModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/chat-app")]
     [ApiController]
     public class ChatAppController : ControllerBase
     {
-        // GET: api/ChatApp
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private DataAccessLayer.IProductManagement _productDb;
+        private IServiceProvider _serviceProvider;
+
+        public ChatAppController(DataAccessLayer.IProductManagement productDb, IServiceProvider serviceProvider)
         {
-            return new[] { "value1", "value2" };
+            this._productDb = productDb;
+            this._serviceProvider = serviceProvider;
         }
-        [HttpGet("FilterByPrice")]
-        public IEnumerable<string> FilterByPrivce()
+        // GET: api/ChatApp/filer-by-price
+        [HttpGet(template:"filter-by-price/{minPrice}/{maxPrice}")]
+        public IEnumerable<DataModel.ProductDataModel> Get(double minPrice, double maxPrice, [FromBody] IEnumerable<DataModel.ProductDataModel> productList)
         {
-            return new[] { "value3", "valu4" };
+            //var products = _productDb.ShowAllProducts(GeTransactionObjectFromContainer());
+            //var filteredProductList = new List<DataModel.ProductDataModel>();
+            //foreach (var product in productList)
+            //{
+            //    if (product.ProductPrice >= minPrice && product.ProductPrice <= maxPrice)
+            //    {
+            //        filteredProductList.Add(new ProductDataModel()
+            //        {
+            //            ProductName = product.ProductName,
+            //            Id = product.Id,
+            //            ProductSeries = product.ProductSeries,
+            //            ProductModel = product.ProductModel,
+            //            ProductPrice = product.ProductPrice,
+            //            ProductWeight = product.ProductWeight,
+            //            MonitorResolution = product.MonitorResolution,
+            //            Measurement = product.Measurement
+
+            //        });
+
+            //    }
+            //}
+            return _productDb.ShowAllProducts(GeTransactionObjectFromContainer());
         }
+        //[HttpGet("FilterByPrice")]
+        //public IEnumerable<string> FilterByPrivce()
+        //{
+        //    return new[] { "value3", "valu4" };
+        //}
 
         /* // GET: api/ChatApp/5
          [HttpGet("{id}", Name = "Get")]
@@ -43,5 +78,11 @@ namespace ChatAPI.Controllers
          public void Delete(int id)
          {
          }*/
+
+        private ITransactionManager GeTransactionObjectFromContainer()
+        {
+            return this._serviceProvider.GetService<ITransactionManager>();
+        }
+
     }
 }

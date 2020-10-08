@@ -29,6 +29,9 @@
             "projectReferences": {
               "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj": {
                 "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataAccessLayer\\DataAccessLayer.csproj"
+              },
+              "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj": {
+                "projectPath": "C:\\Users\\320087402\\OneDrive - Philips\\Documents\\BootCampWorkspace\\VisualStudioSpace\\12_CaseStudy2\\assist-purchase-s22b5\\DataModel\\DataModel.csproj"
               }
             }
           }
