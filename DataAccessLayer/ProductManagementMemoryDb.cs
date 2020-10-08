@@ -54,21 +54,26 @@ namespace DataAccessLayer
         }
         public bool AddProduct(ProductDataModel product, ITransactionManager manager)
         {
-            manager.GetTransaction();
             try
             {
-                if (!string.IsNullOrEmpty(product.Id) && CheckIdExists(product))
+                manager.GetTransaction();
+                if (IsValidProduct(product))
                 {
                     Db.Add(product);
                     return true;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
 
             return false;
+        }
+
+        private static bool IsValidProduct(ProductDataModel product)
+        {
+            return !string.IsNullOrEmpty(product.Id) && CheckIdExists(product);
         }
 
         private static bool CheckIdExists(ProductDataModel product)
