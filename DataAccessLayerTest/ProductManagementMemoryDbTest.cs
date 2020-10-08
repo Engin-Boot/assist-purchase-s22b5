@@ -8,7 +8,6 @@ namespace DataAccessLayerTest
 {
     public class ProductManagementMemoryDbTest
     {
-        //private static readonly List<ProductDataModel> _testDb=new List<ProductDataModel>();
         private readonly IProductManagement _productManagement;
         private readonly ITransactionManager _transactionManager;
 
@@ -22,7 +21,7 @@ namespace DataAccessLayerTest
         {
             var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
-                Id = "id1",
+                Id = "id4",
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -104,7 +103,7 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestShowAllProducts()
         {
-            var productList = _productManagement.ShowAllProducts(_transactionManager);
+            var productList = _productManagement.GetAllProducts(_transactionManager);
             Assert.True(productList.Any());
         }
     }

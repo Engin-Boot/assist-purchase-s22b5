@@ -8,7 +8,7 @@ namespace DataAccessLayer
     {
         bool AddProduct(ProductDataModel product, ITransactionManager manager);
         bool RemoveProduct(ProductDataModel product, ITransactionManager manager);
-        IEnumerable<ProductDataModel> ShowAllProducts(ITransactionManager manager);
+        IEnumerable<ProductDataModel> GetAllProducts(ITransactionManager manager);
         bool UpdateProduct(ProductDataModel product, ITransactionManager manager);
     }
 }
