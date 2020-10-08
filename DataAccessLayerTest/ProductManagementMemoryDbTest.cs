@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
+using DataAccessLayer.Utils;
 using DataModel;
 using Xunit;
 namespace DataAccessLayerTest
@@ -9,10 +10,12 @@ namespace DataAccessLayerTest
     {
         //private static readonly List<ProductDataModel> _testDb=new List<ProductDataModel>();
         private readonly IProductManagement _productManagement;
+        private readonly ITransactionManager _transactionManager;
 
         public ProductManagementMemoryDbTest()
         {
             _productManagement=new ProductManagementMemoryDb();
+            _transactionManager=new TransactionManager();
         }
         [Fact]
         public void TestAddProduct()
@@ -30,9 +33,9 @@ namespace DataAccessLayerTest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productManagement.AddProduct(testProd));
+            Assert.True(_productManagement.AddProduct(testProd, _transactionManager));
             testProd=new ProductDataModel();
-            Assert.False(_productManagement.AddProduct(testProd));
+            Assert.False(_productManagement.AddProduct(testProd, _transactionManager));
         }
         [Fact]
         public void TestRemoveProduct()
@@ -50,7 +53,7 @@ namespace DataAccessLayerTest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productManagement.RemoveProduct(testProd));
+            Assert.True(_productManagement.RemoveProduct(testProd, _transactionManager));
             testProd=new ProductDataModel{
                 ProductName = "IntelliVue X3",
                 Id = "RandomId",
@@ -64,7 +67,7 @@ namespace DataAccessLayerTest
                     "SPO2", "ECG"
                 }
             };
-            Assert.False(_productManagement.RemoveProduct(testProd));
+            Assert.False(_productManagement.RemoveProduct(testProd, _transactionManager));
         }
         [Fact]
         public void TestUpdateProduct()
@@ -82,7 +85,7 @@ namespace DataAccessLayerTest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productManagement.UpdateProduct(testProd));
+            Assert.True(_productManagement.UpdateProduct(testProd, _transactionManager));
             testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = "randomId",
@@ -96,12 +99,12 @@ namespace DataAccessLayerTest
                     "SPO2", "ECG"
                 }
             };
-            Assert.False(_productManagement.UpdateProduct(testProd));
+            Assert.False(_productManagement.UpdateProduct(testProd, _transactionManager));
         }
         [Fact]
         public void TestShowAllProducts()
         {
-            var productList = _productManagement.ShowAllProducts();
+            var productList = _productManagement.ShowAllProducts(_transactionManager);
             Assert.True(productList.Any());
         }
     }

@@ -1,3 +1,5 @@
+using DataAccessLayer;
+using DataAccessLayer.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +21,8 @@ namespace ChatAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IProductManagement, ProductManagementMemoryDb>();
+            services.AddTransient<ITransactionManager, TransactionManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

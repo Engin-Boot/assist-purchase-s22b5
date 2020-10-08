@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataAccessLayer.Utils;
 using DataModel;
 
 namespace DataAccessLayer
@@ -51,8 +52,9 @@ namespace DataAccessLayer
                 Measurement = new List<string>(){}
             });
         }
-        public bool AddProduct(ProductDataModel product)
+        public bool AddProduct(ProductDataModel product, ITransactionManager manager)
         {
+            manager.GetTransaction();
             try
             {
                 if (!string.IsNullOrEmpty(product.Id))
@@ -69,10 +71,11 @@ namespace DataAccessLayer
             return false;
         }
 
-        public bool RemoveProduct(ProductDataModel product)
+        public bool RemoveProduct(ProductDataModel product, ITransactionManager manager)
         {
             try
             {
+                manager.GetTransaction();
                 foreach (var products in Db.Where(products => products.Id == product.Id))
                 {
                     Db.Remove(products);
@@ -87,13 +90,15 @@ namespace DataAccessLayer
             return false;
         }
 
-        public IEnumerable<ProductDataModel> ShowAllProducts()
+        public IEnumerable<ProductDataModel> ShowAllProducts(ITransactionManager manager)
         {
+            manager.GetTransaction();
             return Db;
         }
 
-        public bool UpdateProduct(ProductDataModel product)
+        public bool UpdateProduct(ProductDataModel product, ITransactionManager manager)
         {
+            manager.GetTransaction();
             for (var index = 0; index < Db.Count; index++) 
             {
                     if (Db[index].Id != product.Id) continue;
