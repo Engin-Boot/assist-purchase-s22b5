@@ -11,8 +11,38 @@ namespace DataAccessLayer
 
         public ProductManagementMemoryDb()
         {
-            Db.Add(new ProductDataModel{Id = "id1"});
-            Db.Add(new ProductDataModel{ Id = "id2" });
+            Db.Add(new ProductDataModel{ ProductName = "IntelliVue X3",
+                Id = "id1",
+                ProductSeries = "Intellivue", 
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                MonitorResolution = "1024*720",
+                Measurement = {"SPO2", "ECG"}
+            });
+            Db.Add(new ProductDataModel
+            {
+                ProductName = "IntelliVue MX40",
+                Id = "id1",
+                ProductSeries = "Intellivue",
+                ProductModel = "MX40",
+                ProductPrice = 2000000,
+                ProductWeight = 2000,
+                MonitorResolution = "1024*920",
+                Measurement = { "SPO2" }
+            });
+
+            Db.Add(new ProductDataModel
+            {
+                ProductName = "IntelliVue MX750",
+                Id = "id1",
+                ProductSeries = "Intellivue",
+                ProductModel = "MX750",
+                ProductPrice = 3000000,
+                ProductWeight = 3000,
+                MonitorResolution = "1024*1020",
+                Measurement = {}
+            });
         }
         public bool AddProduct(ProductDataModel product)
         {
