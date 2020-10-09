@@ -24,7 +24,7 @@ jobs:
         run: dotnet test --collect:"XPlat Code Coverage"
       
       - name: Check ChatAPI Coverage
-        run: powershell ./Coverage.ps1 -linerate 0.9 -project ChatAPITest
+        run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project ChatAPITest
       
       - name: Check DataAccessLayer Coverage
-        run: powershell ./Coverage.ps1 -linerate 0.9 -project DataAccessLayerTest
+        run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project DataAccessLayerTest
