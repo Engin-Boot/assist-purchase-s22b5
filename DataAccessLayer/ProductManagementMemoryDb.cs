@@ -19,6 +19,7 @@ namespace DataAccessLayer
                 ProductModel = "X3",
                 ProductPrice = 1000000,
                 ProductWeight = 1000,
+                Portable = true,
                 MonitorResolution = "1024*720",
                 Measurement = new List<string>()
                 {
@@ -33,6 +34,7 @@ namespace DataAccessLayer
                 ProductModel = "MX40",
                 ProductPrice = 2000000,
                 ProductWeight = 2000,
+                Portable = true,
                 MonitorResolution = "1024*920",
                 Measurement = new List<string>()
                 {
@@ -48,6 +50,7 @@ namespace DataAccessLayer
                 ProductModel = "MX750",
                 ProductPrice = 3000000,
                 ProductWeight = 3000,
+                Portable = false,
                 MonitorResolution = "1024*1020",
                 Measurement = new List<string>()
             });
