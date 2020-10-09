@@ -6,6 +6,7 @@ using Xunit;
 using DataModel;
 namespace DataAccessLayerTest
 {
+    
     public class ProductManagementMemoryDbTest
     {
         private readonly IProductManagement _productManagement;
@@ -19,7 +20,7 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestAddProduct()
         {
-            var testProd = new DataModel.ProductDataModel {
+            var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 104,
                 ProductSeries = "Intellivue",
@@ -34,13 +35,13 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.AddProduct(testProd, _transactionManager));
-            testProd=new DataModel.ProductDataModel();
+            testProd=new ProductDataModel();
             Assert.False(_productManagement.AddProduct(testProd, _transactionManager));
         }
         [Fact]
         public void TestRemoveProduct()
         {
-            var testProd = new DataModel.ProductDataModel {
+            var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 101,
                 ProductSeries = "Intellivue",
@@ -55,7 +56,7 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.RemoveProduct(testProd, _transactionManager));
-            testProd=new DataModel.ProductDataModel
+            testProd=new ProductDataModel
             {
                 ProductName = "IntelliVue X3",
                 Id = -1,
@@ -75,7 +76,7 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestUpdateProduct()
         {
-            var testProd = new DataModel.ProductDataModel {
+            var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 101,
                 ProductSeries = "Intellivue",
@@ -90,7 +91,7 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.UpdateProduct(testProd, _transactionManager));
-            testProd = new DataModel.ProductDataModel {
+            testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = -1,
                 ProductSeries = "Intellivue",
