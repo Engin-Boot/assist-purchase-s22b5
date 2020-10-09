@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer.Utils;
-using DataModel;
 
 namespace DataAccessLayer
 {
     public class ProductManagementMemoryDb:IProductManagement
     {
-        private static readonly List<ProductDataModel> Db=new List<ProductDataModel>();
+        private static readonly List<DataModel.ProductDataModel> Db=new List<DataModel.ProductDataModel>();
 
         public ProductManagementMemoryDb()
         {
-            Db.Add(new ProductDataModel{ 
+            Db.Add(new DataModel.ProductDataModel
+            { 
                 ProductName = "IntelliVue X3",
                 Id = 101,
                 ProductSeries = "Intellivue", 
@@ -26,7 +26,7 @@ namespace DataAccessLayer
                     "SPO2", "ECG"
                 }
             });
-            Db.Add(new ProductDataModel
+            Db.Add(new DataModel.ProductDataModel
             {
                 ProductName = "IntelliVue MX40",
                 Id = 102,
@@ -42,7 +42,7 @@ namespace DataAccessLayer
                 }
             });
 
-            Db.Add(new ProductDataModel
+            Db.Add(new DataModel.ProductDataModel
             {
                 ProductName = "IntelliVue MX750",
                 Id = 103,
@@ -55,7 +55,7 @@ namespace DataAccessLayer
                 Measurement = new List<string>()
             });
         }
-        public bool AddProduct(ProductDataModel product, ITransactionManager manager)
+        public bool AddProduct(DataModel.ProductDataModel product, ITransactionManager manager)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public bool RemoveProduct(ProductDataModel product, ITransactionManager manager)
+        public bool RemoveProduct(DataModel.ProductDataModel product, ITransactionManager manager)
         {
             try
             {
@@ -99,13 +99,13 @@ namespace DataAccessLayer
             return false;
         }
 
-        public IEnumerable<ProductDataModel> GetAllProducts(ITransactionManager manager)
+        public IEnumerable<DataModel.ProductDataModel> GetAllProducts(ITransactionManager manager)
         {
             manager.GetTransaction();
             return Db;
         }
 
-        public bool UpdateProduct(ProductDataModel product, ITransactionManager manager)
+        public bool UpdateProduct(DataModel.ProductDataModel product, ITransactionManager manager)
         {
             manager.GetTransaction();
             for (var index = 0; index < Db.Count; index++) 
