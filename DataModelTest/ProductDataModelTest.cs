@@ -25,6 +25,23 @@ namespace DataModelTest
                 }
             };
             Assert.False(string.IsNullOrEmpty(testProd.ToString()));
+            testProd = new ProductDataModel
+            {
+                ProductName = "",
+                Id = 104,
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                ProductPrice = 1000000,
+                ProductWeight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            Assert.True(string.IsNullOrEmpty(testProd.ProductName));
+
         }
     }
 }
