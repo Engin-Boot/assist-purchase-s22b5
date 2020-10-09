@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataAccessLayer.Utils;
+using DataModel;
+using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,30 +23,14 @@ namespace ChatAPI.Controllers
         }
         // GET: api/ChatApp/filer-by-price
         [HttpGet(template:"filter-by-price/{minPrice}/{maxPrice}")]
-        public IEnumerable<DataModel.ProductDataModel> Get(double minPrice, double maxPrice, [FromBody] IEnumerable<DataModel.ProductDataModel> productList)
+        public IEnumerable<ProductDataModel> Get(double minPrice, double maxPrice, [FromBody] IEnumerable<ProductDataModel> productList)
         {
-            //var products = _productDb.ShowAllProducts(GeTransactionObjectFromContainer());
-            //var filteredProductList = new List<DataModel.ProductDataModel>();
-            //foreach (var product in productList)
-            //{
-            //    if (product.ProductPrice >= minPrice && product.ProductPrice <= maxPrice)
-            //    {
-            //        filteredProductList.Add(new ProductDataModel()
-            //        {
-            //            ProductName = product.ProductName,
-            //            Id = product.Id,
-            //            ProductSeries = product.ProductSeries,
-            //            ProductModel = product.ProductModel,
-            //            ProductPrice = product.ProductPrice,
-            //            ProductWeight = product.ProductWeight,
-            //            MonitorResolution = product.MonitorResolution,
-            //            Measurement = product.Measurement
+            
 
-            //        });
-
-            //    }
-            //}
-            return _productDb.GetAllProducts(GeTransactionObjectFromContainer());
+            /*Filters.FilterByPrice(minPrice, maxPrice, productList);
+            return products.Where(product => product.ProductPrice >= minPrice && product.ProductPrice <= maxPrice).ToList();*/
+            return null;
+            //return _productDb.GetAllProducts(GeTransactionObjectFromContainer());
         }
         //[HttpGet("FilterByPrice")]
         //public IEnumerable<string> FilterByPrivce()

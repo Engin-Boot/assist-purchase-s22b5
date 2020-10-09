@@ -59,6 +59,7 @@ namespace DataAccessLayer
         {
             try
             {
+                product.Id = 0;
                 if (string.IsNullOrEmpty(product.ProductName))
                     return false;
                 manager.GetTransaction();

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using DataAccessLayer.Utils;
-using DataModel;
 using Xunit;
 namespace DataAccessLayerTest
 {
@@ -19,7 +18,7 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestAddProduct()
         {
-            var testProd = new ProductDataModel {
+            var testProd = new DataModel.ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 104,
                 ProductSeries = "Intellivue",
@@ -34,13 +33,13 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.AddProduct(testProd, _transactionManager));
-            testProd=new ProductDataModel();
+            testProd=new DataModel.ProductDataModel();
             Assert.False(_productManagement.AddProduct(testProd, _transactionManager));
         }
         [Fact]
         public void TestRemoveProduct()
         {
-            var testProd = new ProductDataModel {
+            var testProd = new DataModel.ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 101,
                 ProductSeries = "Intellivue",
@@ -55,7 +54,8 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.RemoveProduct(testProd, _transactionManager));
-            testProd=new ProductDataModel{
+            testProd=new DataModel.ProductDataModel
+            {
                 ProductName = "IntelliVue X3",
                 Id = -1,
                 ProductSeries = "Intellivue",
@@ -74,7 +74,7 @@ namespace DataAccessLayerTest
         [Fact]
         public void TestUpdateProduct()
         {
-            var testProd = new ProductDataModel {
+            var testProd = new DataModel.ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = 101,
                 ProductSeries = "Intellivue",
@@ -89,7 +89,7 @@ namespace DataAccessLayerTest
                 }
             };
             Assert.True(_productManagement.UpdateProduct(testProd, _transactionManager));
-            testProd = new ProductDataModel {
+            testProd = new DataModel.ProductDataModel {
                 ProductName = "IntelliVue X3",
                 Id = -1,
                 ProductSeries = "Intellivue",
