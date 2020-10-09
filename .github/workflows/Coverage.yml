@@ -28,3 +28,6 @@ jobs:
       
       - name: Check DataAccessLayer Coverage
         run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project DataAccessLayerTest
+      
+      - name: Check DataModel Coverage
+        run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project DataModelTest
