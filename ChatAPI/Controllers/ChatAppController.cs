@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using DataAccessLayer;
 using DataAccessLayer.Utils;
-using DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,8 +10,8 @@ namespace ChatAPI.Controllers
     [ApiController]
     public class ChatAppController : ControllerBase
     {
-        private DataAccessLayer.IProductManagement _productDb;
-        private IServiceProvider _serviceProvider;
+        private readonly DataAccessLayer.IProductManagement _productDb;
+        private readonly IServiceProvider _serviceProvider;
 
         public ChatAppController(DataAccessLayer.IProductManagement productDb, IServiceProvider serviceProvider)
         {
@@ -46,7 +43,7 @@ namespace ChatAPI.Controllers
 
             //    }
             //}
-            return _productDb.ShowAllProducts(GeTransactionObjectFromContainer());
+            return _productDb.GetAllProducts(GeTransactionObjectFromContainer());
         }
         //[HttpGet("FilterByPrice")]
         //public IEnumerable<string> FilterByPrivce()

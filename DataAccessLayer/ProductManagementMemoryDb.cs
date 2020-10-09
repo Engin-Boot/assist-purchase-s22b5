@@ -14,7 +14,7 @@ namespace DataAccessLayer
         {
             Db.Add(new ProductDataModel{ 
                 ProductName = "IntelliVue X3",
-                Id = "id1",
+                Id = 101,
                 ProductSeries = "Intellivue", 
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -28,7 +28,7 @@ namespace DataAccessLayer
             Db.Add(new ProductDataModel
             {
                 ProductName = "IntelliVue MX40",
-                Id = "id1",
+                Id = 102,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX40",
                 ProductPrice = 2000000,
@@ -43,7 +43,7 @@ namespace DataAccessLayer
             Db.Add(new ProductDataModel
             {
                 ProductName = "IntelliVue MX750",
-                Id = "id1",
+                Id = 103,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX750",
                 ProductPrice = 3000000,
@@ -56,32 +56,26 @@ namespace DataAccessLayer
         {
             try
             {
+                if (string.IsNullOrEmpty(product.ProductName))
+                    return false;
                 manager.GetTransaction();
-                if (IsValidProduct(product))
-                {
-                    Db.Add(product);
-                    return true;
-                }
+                product.Id = GenerateProductId();
+                Db.Add(product);
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
-
-            return false;
         }
 
-        private static bool IsValidProduct(ProductDataModel product)
+        private static int GenerateProductId()
         {
-            return !string.IsNullOrEmpty(product.Id) && CheckIdExists(product);
+            var max = Db[0].Id;
+            max = Db.Select(product => product.Id).Prepend(max).Max();
+
+            return max + 1;
         }
-
-        private static bool CheckIdExists(ProductDataModel product)
-        {
-            return Db.All(products => products.Id != product.Id);
-        }
-
-
         public bool RemoveProduct(ProductDataModel product, ITransactionManager manager)
         {
             try

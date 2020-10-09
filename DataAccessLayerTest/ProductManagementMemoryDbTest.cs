@@ -21,7 +21,7 @@ namespace DataAccessLayerTest
         {
             var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
-                Id = "id4",
+                Id = 104,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -41,7 +41,7 @@ namespace DataAccessLayerTest
         {
             var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
-                Id = "id1",
+                Id = 101,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -55,7 +55,7 @@ namespace DataAccessLayerTest
             Assert.True(_productManagement.RemoveProduct(testProd, _transactionManager));
             testProd=new ProductDataModel{
                 ProductName = "IntelliVue X3",
-                Id = "RandomId",
+                Id = -1,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -73,7 +73,7 @@ namespace DataAccessLayerTest
         {
             var testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
-                Id = "id1",
+                Id = 101,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
@@ -87,7 +87,7 @@ namespace DataAccessLayerTest
             Assert.True(_productManagement.UpdateProduct(testProd, _transactionManager));
             testProd = new ProductDataModel {
                 ProductName = "IntelliVue X3",
-                Id = "randomId",
+                Id = -1,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",
                 ProductPrice = 1000000,
