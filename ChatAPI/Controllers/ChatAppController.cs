@@ -14,12 +14,12 @@ namespace ChatAPI.Controllers
     public class ChatAppController : ControllerBase
     {
         private readonly DataAccessLayer.IProductManagement _productDb;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly TransactionUtil _serviceProvider;
 
         public ChatAppController(DataAccessLayer.IProductManagement productDb, IServiceProvider serviceProvider)
         {
-            this._productDb = productDb;
-            this._serviceProvider = serviceProvider;
+            _productDb = productDb;
+           _serviceProvider = new TransactionUtil(serviceProvider);
         }
         // GET: api/ChatApp/filer-by-price
         [HttpGet(template:"filter-by-price/{minPrice}/{maxPrice}")]
@@ -63,10 +63,7 @@ namespace ChatAPI.Controllers
          {
          }*/
 
-        private ITransactionManager GeTransactionObjectFromContainer()
-        {
-            return this._serviceProvider.GetService<ITransactionManager>();
-        }
+       
 
     }
 }
