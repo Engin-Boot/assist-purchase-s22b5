@@ -27,8 +27,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: Test
-      run: 
-        dotnet build ChatAPI/
-        dotnet run --project ChatAPI
-        sleep 5
+      run: |
+        dotnet build ChatAPI/ |
+        dotnet run --project ChatAPI |
+        sleep 5 |
         dotnet test --no-restore --verbosity normal
