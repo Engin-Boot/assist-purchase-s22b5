@@ -1,0 +1,20 @@
+name: Test-Project
+ 
+on: 
+    push:
+        branches: [main]
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: AssistPurchase.sln 
+ 
+    steps:
+      name: Sleep
+      run: timeout /t 150
+      name: Test
+      run: dotnet test --no-restore --verbosity normal
+      name: Kill process
+      run: taskkill /F /IM ChatAPI.exe
