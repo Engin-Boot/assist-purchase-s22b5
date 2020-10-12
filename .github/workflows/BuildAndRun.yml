@@ -30,5 +30,4 @@ jobs:
       run: |
         dotnet build ChatAPI/ |
         dotnet run --project ChatAPI |
-        sleep 5 |
         dotnet test --no-restore --verbosity normal
