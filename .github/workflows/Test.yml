@@ -12,11 +12,10 @@ jobs:
       Solution_Name: AssistPurchase.sln 
  
     steps:
-     - name: Checkout
-       uses: actions/checkout@v1
-
-     - name: Sleep
-       run: timeout /t 150 
+     - name: Sleep for 10s
+       uses: juliangruber/sleep-action@v1
+       with:
+        time: 10s 
 
      - name: Test
        run: dotnet test --no-restore --verbosity normal
