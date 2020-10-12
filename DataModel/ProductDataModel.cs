@@ -9,11 +9,12 @@ namespace DataModel
         public int Id { get; set; }
         public string ProductSeries { get; set; }
         public string ProductModel { get; set; }
-        public double ProductPrice { get; set; }
-        public double ProductWeight { get; set; }
+        public double Price { get; set; }
+        public double Weight { get; set; }
         public bool Portable { get; set; }
         public string MonitorResolution { get; set; }
         public List<string> Measurement { get; set; }
+        public double ScreenSize { get; set; }
 
         public override string ToString()
         {
@@ -23,8 +24,8 @@ namespace DataModel
             str.Append(" \"id\" :" + Id + ",");
             str.Append(" \"productSeries\" : \"" + ProductSeries + "\",");
             str.Append(" \"productModel\" : \"" + ProductModel + "\",");
-            str.Append(" \"productPrice\" : " + ProductPrice + ",");
-            str.Append(" \"productWeight\" : " + ProductWeight +",");
+            str.Append(" \"productPrice\" : " + Price + ",");
+            str.Append(" \"productWeight\" : " + Weight +",");
             str.Append(" \"portable\" : " + Portable + ",");
             str.Append(" \"monitorResolution\" : \"" + MonitorResolution + "\",");
             str.Append("\"measurement\" : [");
