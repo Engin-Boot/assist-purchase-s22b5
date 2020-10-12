@@ -6,36 +6,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChatAPI.Controllers
 {
-    [Route("api/chat-app")]
+    [Route("api/chatapp")]
     [ApiController]
     public class ChatAppController : ControllerBase
     {
-        private readonly DataAccessLayer.IProductManagement _productDb;
-        private readonly TransactionUtil _serviceProvider;
+        private readonly FilterUtil _filter;
+        
 
         public ChatAppController(DataAccessLayer.IProductManagement productDb, IServiceProvider serviceProvider)
         {
-            _productDb = productDb;
-           _serviceProvider = new TransactionUtil(serviceProvider);
+            _filter = new FilterUtil(productDb, serviceProvider);
+           
         }
-        // GET: api/ChatApp/filer-by-price
-        [HttpGet]
-        public IEnumerable<ProductDataModel> Get()
-        {
-            
 
-            /*Filters.FilterByPrice(minPrice, maxPrice, productList);
-            return products.Where(product => product.ProductPrice >= minPrice && product.ProductPrice <= maxPrice).ToList();*/
-            return null;
-            //return _productDb.GetAllProducts(GeTransactionObjectFromContainer());
+        // GET: api/chat-app
+        [HttpGet]
+        public IEnumerable<ProductDataModel> FilterProducts([FromQuery] Filter filtersList)
+        {
+            return _filter.ProductFilter(filtersList);
         }
         
 
          // POST: api/ChatApp
          [HttpPost]
-         public void Post([FromBody] string value)
+         public void Post()
          {
-            Console.WriteLine(value+_productDb+_serviceProvider);
+            
          }
     }
 }
