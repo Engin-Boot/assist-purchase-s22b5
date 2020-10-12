@@ -17,10 +17,11 @@ namespace DataAccessLayer
                 Id = 101,
                 ProductSeries = "Intellivue", 
                 ProductModel = "X3",
-                Price = 1000000,
+                Price = 10,
                 Weight = 1000,
                 Portable = true,
                 MonitorResolution = "1024*720",
+                ScreenSize = 5,
                 Measurement = new List<string>()
                 {
                     "SPO2", "ECG"
@@ -32,10 +33,11 @@ namespace DataAccessLayer
                 Id = 102,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX40",
-                Price = 2000000,
+                Price = 20,
                 Weight = 2000,
                 Portable = true,
                 MonitorResolution = "1024*920",
+                ScreenSize = 15,
                 Measurement = new List<string>()
                 {
                     "SPO2"
@@ -48,10 +50,11 @@ namespace DataAccessLayer
                 Id = 103,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX750",
-                Price = 3000000,
+                Price = 30,
                 Weight = 3000,
                 Portable = false,
                 MonitorResolution = "1024*1020",
+                ScreenSize = 29,
                 Measurement = new List<string>()
             });
         }
