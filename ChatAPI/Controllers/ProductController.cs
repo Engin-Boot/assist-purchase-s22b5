@@ -8,8 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatAPI.Controllers
 {
-    [Route("api/product")]
-    [ApiController]
+    [Route("api/product"), ApiController]
     public class ProductController : ControllerBase
     {
         private readonly IProductManagement _product;
