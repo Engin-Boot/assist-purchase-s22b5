@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataAccessLayer.Utils;
 
 namespace DataAccessLayer
 {
@@ -17,7 +16,6 @@ namespace DataAccessLayer
                 Id = 101,
                 ProductSeries = "Intellivue", 
                 ProductModel = "X3",
-                Price = 10,
                 Weight = 1000,
                 Portable = true,
                 MonitorResolution = "1024*720",
@@ -33,7 +31,6 @@ namespace DataAccessLayer
                 Id = 102,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX40",
-                Price = 20,
                 Weight = 2000,
                 Portable = true,
                 MonitorResolution = "1024*920",
@@ -50,7 +47,6 @@ namespace DataAccessLayer
                 Id = 103,
                 ProductSeries = "Intellivue",
                 ProductModel = "MX750",
-                Price = 30,
                 Weight = 3000,
                 Portable = false,
                 MonitorResolution = "1024*1020",

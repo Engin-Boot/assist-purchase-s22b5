@@ -1,10 +1,7 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
 using ChatAPI.Controllers;
-using ChatAPI.Utils;
 using DataAccessLayer;
-using DataAccessLayer.Utils;
-using Moq;
 using Xunit;
 
 
@@ -12,22 +9,82 @@ namespace ChatAPITest
 {
     public class ProductControllerTest
     {
-
-        private readonly IProductManagement _product;
-        private Mock<IServiceProvider> _service;
+        private readonly ProductController _productController;
         public ProductControllerTest()
         {
-            _product=new ProductManagementMemoryDb();
-            _service = new Mock<IServiceProvider>();
-            
-
+            IProductManagement product = new ProductManagementMemoryDb();
+            _productController = new ProductController(product);
         }
         [Fact]
         public void TestGetMethod()
         {
-            var productController = new ProductController(_product, _service.Object);
-            var list = productController.Get();
+            
+            var list = _productController.Get();
             Assert.True(list.Any());
         }
+        [Fact]
+        public void TestAddMethod()
+        {
+            var testProd=new DataModel.ProductDataModel()
+            {
+                ProductName = "IntelliVue X3",
+                Id = 0,
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                Weight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                ScreenSize = 5,
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            Assert.True(_productController.AddProduct(testProd));
+        }
+        [Fact]
+        public void TestRemoveMethod()
+        {
+            var testProd = new DataModel.ProductDataModel()
+            {
+                ProductName = "IntelliVue X3",
+                Id = 0,
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                Weight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                ScreenSize = 5,
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            Assert.True(_productController.AddProduct(testProd));
+            Assert.True(_productController.RemoveProduct(testProd));
+        }
+        [Fact]
+        public void TestUpdateMethod()
+        {
+            var testProd = new DataModel.ProductDataModel()
+            {
+                ProductName = "IntelliVue X3",
+                Id = 0,
+                ProductSeries = "Intellivue",
+                ProductModel = "X3",
+                Weight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                ScreenSize = 5,
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            Assert.True(_productController.AddProduct(testProd));
+            testProd.Portable = false;
+            Assert.True(_productController.UpdateProduct(testProd));
+        }
+
     }
 }

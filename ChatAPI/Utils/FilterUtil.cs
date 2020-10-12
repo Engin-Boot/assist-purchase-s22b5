@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using DataModel;
@@ -9,17 +8,15 @@ namespace ChatAPI.Utils
     public class FilterUtil
     {
         private readonly IProductManagement _productDb;
-        private readonly TransactionUtil _serviceProvider;
 
-        public FilterUtil(IProductManagement productDb, IServiceProvider serviceProvider)
+        public FilterUtil(IProductManagement productDb )
         {
             _productDb = productDb;
-            _serviceProvider = new TransactionUtil(serviceProvider);
         }
 
         public IEnumerable<ProductDataModel> ProductFilter(Filter filtersList)
         {
-            var products = _productDb.GetAllProducts(_serviceProvider.GeTransactionObjectFromContainer());
+            var products = _productDb.GetAllProducts();
             var filteredProducts = new List<ProductDataModel>();
             if (!string.IsNullOrEmpty(filtersList.IsPortable))
             {

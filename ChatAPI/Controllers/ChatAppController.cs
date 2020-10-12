@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DataModel;
 using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +12,9 @@ namespace ChatAPI.Controllers
         private readonly FilterUtil _filter;
         
 
-        public ChatAppController(DataAccessLayer.IProductManagement productDb, IServiceProvider serviceProvider)
+        public ChatAppController(DataAccessLayer.IProductManagement productDb )
         {
-            _filter = new FilterUtil(productDb, serviceProvider);
+            _filter = new FilterUtil(productDb);
            
         }
 
