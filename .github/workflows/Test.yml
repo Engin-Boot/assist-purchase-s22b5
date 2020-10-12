@@ -12,9 +12,14 @@ jobs:
       Solution_Name: AssistPurchase.sln 
  
     steps:
-      name: Sleep
-      run: timeout /t 150
-      name: Test
-      run: dotnet test --no-restore --verbosity normal
-      name: Kill process
-      run: taskkill /F /IM ChatAPI.exe
+     - name: Checkout
+       uses: actions/checkout@v1
+
+     - name: Sleep
+       run: timeout /t 150 
+
+     - name: Test
+       run: dotnet test --no-restore --verbosity normal
+
+     - name: Kill process
+       run: taskkill /F /IM ChatAPI.exe
