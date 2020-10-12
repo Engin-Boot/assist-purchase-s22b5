@@ -1,36 +1,33 @@
 using System;
-using System.Collections.Generic;
-using DataModel;
-using RestSharp;
-using RestSharp.Serialization.Json;
+using System.Linq;
+using ChatAPI.Controllers;
+using ChatAPI.Utils;
+using DataAccessLayer;
+using DataAccessLayer.Utils;
+using Moq;
 using Xunit;
+
 
 namespace ChatAPITest
 {
     public class ProductControllerTest
     {
-        private readonly RestClient _restClient;
-        private readonly RestRequest _request;
+
+        private readonly IProductManagement _product;
+        private Mock<IServiceProvider> _service;
         public ProductControllerTest()
         {
-            _restClient = new RestClient("http://localhost:53951/api");
-            _request = new RestRequest("product/", Method.GET);
+            _product=new ProductManagementMemoryDb();
+            _service = new Mock<IServiceProvider>();
+            
+
         }
         [Fact]
         public void TestGetMethod()
         {
-            var data = _restClient.Execute(_request);
-            var deserialize = new JsonDeserializer();
-            Console.WriteLine("Reached here"+data);
-            var output = deserialize.Deserialize<List<ProductDataModel>>(data);
-
-            //Console.WriteLine(output.ToString());
-
-            Assert.True(output[0].Id == 101); 
-            Assert.True(output[1].Id == 102);
-            Assert.True(output[0].Portable);
-
-
+            var productController = new ProductController(_product, _service.Object);
+            var list = productController.Get();
+            Assert.True(list.Any());
         }
     }
 }

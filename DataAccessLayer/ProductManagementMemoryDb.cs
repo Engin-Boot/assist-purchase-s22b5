@@ -55,12 +55,12 @@ namespace DataAccessLayer
                 Measurement = new List<string>()
             });
         }
-        public bool AddProduct(DataModel.ProductDataModel product, ITransactionManager manager)
+        public bool AddProduct(DataModel.ProductDataModel product)
         {
             product.Id = 0;
             if (string.IsNullOrEmpty(product.ProductName))
                 return false;
-            manager.GetTransaction();
+          
             product.Id = GenerateProductId();
             Db.Add(product);
             return true;
@@ -73,11 +73,11 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public bool RemoveProduct(DataModel.ProductDataModel product, ITransactionManager manager)
+        public bool RemoveProduct(DataModel.ProductDataModel product)
         {
             try
             {
-                manager.GetTransaction();
+            
                 foreach (var products in Db.Where(products => products.Id == product.Id))
                 {
                     Db.Remove(products);
@@ -92,15 +92,15 @@ namespace DataAccessLayer
             return false;
         }
 
-        public IEnumerable<DataModel.ProductDataModel> GetAllProducts(ITransactionManager manager)
+        public IEnumerable<DataModel.ProductDataModel> GetAllProducts()
         {
-            manager.GetTransaction();
+          
             return Db;
         }
 
-        public bool UpdateProduct(DataModel.ProductDataModel product, ITransactionManager manager)
+        public bool UpdateProduct(DataModel.ProductDataModel product)
         {
-            manager.GetTransaction();
+          //  manager.GetTransaction();
             for (var index = 0; index < Db.Count; index++) 
             {
                     if (Db[index].Id != product.Id) continue;
