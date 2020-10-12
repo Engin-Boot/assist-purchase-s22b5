@@ -22,6 +22,7 @@ namespace ChatAPI.Controllers
         [HttpGet]
         public IEnumerable<ProductDataModel> Get()
         {
+            Console.WriteLine(_product.GetAllProducts(GeTransactionObjectFromContainer()));
             return _product.GetAllProducts(GeTransactionObjectFromContainer());
         }
         [HttpPost]

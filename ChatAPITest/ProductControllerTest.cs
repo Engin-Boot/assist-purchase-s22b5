@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DataModel;
 using RestSharp;
@@ -20,11 +21,12 @@ namespace ChatAPITest
         {
             var data = _restClient.Execute(_request);
             var deserialize = new JsonDeserializer();
+            Console.WriteLine("Reached here"+data);
             var output = deserialize.Deserialize<List<ProductDataModel>>(data);
 
             //Console.WriteLine(output.ToString());
 
-            Assert.True(output[0].Id == 101);
+            Assert.True(output[0].Id == 101); 
             Assert.True(output[1].Id == 102);
             Assert.True(output[0].Portable);
 
