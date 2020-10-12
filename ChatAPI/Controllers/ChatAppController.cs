@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using DataModel;
 using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +31,38 @@ namespace ChatAPI.Controllers
 
          // POST: api/ChatApp
          [HttpPost]
-         public void Post()
+         public bool Post()
          {
-            
+            return SendEmailViaWebApi();
+         }
+         private bool SendEmailViaWebApi()
+         {
+             try
+             {
+                 using SmtpClient smtp = new SmtpClient
+                 {
+                     DeliveryMethod = SmtpDeliveryMethod.Network,
+                     UseDefaultCredentials = false,
+                     EnableSsl = true,
+                     Host = "smtp.gmail.com",
+                     Port = 587,
+                     Credentials = new NetworkCredential("Sender Username", "Sender Password")
+                 };
+                 // send the email
+                 smtp.Send("Sender@Email.com", "receiver@Email.com", "Test Email Subject", " Test Message Body");
+                 return true;
+             }
+             catch (SmtpException)
+             {
+                 return true;
+             }
+             catch (Exception)
+             {
+                 return false;
+             }
+
+             
+             
          }
     }
 }
