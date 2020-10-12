@@ -24,8 +24,8 @@ namespace DataModel
             str.Append(" \"id\" :" + Id + ",");
             str.Append(" \"productSeries\" : \"" + ProductSeries + "\",");
             str.Append(" \"productModel\" : \"" + ProductModel + "\",");
-            str.Append(" \"productPrice\" : " + ProductPrice + ",");
-            str.Append(" \"productWeight\" : " + ProductWeight +",");
+            str.Append(" \"productPrice\" : " + Price + ",");
+            str.Append(" \"productWeight\" : " + Weight +",");
             str.Append(" \"portable\" : " + Portable + ",");
             str.Append(" \"monitorResolution\" : \"" + MonitorResolution + "\",");
             str.Append("\"measurement\" : [");
