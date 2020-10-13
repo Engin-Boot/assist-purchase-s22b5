@@ -17,50 +17,52 @@ namespace ChatAPI.Utils
         public IEnumerable<ProductDataModel> ProductFilter(Filter filtersList)
         {
             var products = _productDb.GetAllProducts();
-            var filteredProducts = new List<ProductDataModel>();
-            if (!string.IsNullOrEmpty(filtersList.IsPortable))
-            {
-                var searchCriteria = bool.Parse(filtersList.IsPortable);
-                filteredProducts.AddRange(products.Where(product => product.Portable == searchCriteria));
-                products = filteredProducts;
-            }
             
-            if (!(filtersList.MinWeight <= 0 || filtersList.MaxWeight <= filtersList.MinWeight))
-            {
-                filteredProducts = FilterByWeight(filtersList.MinWeight, filtersList.MaxWeight, products);
-                products = filteredProducts;
-            }
-            
-            if (!(filtersList.MinScreenSize <= 0 || filtersList.MaxScreenSize <= filtersList.MinScreenSize))
-            {
-                filteredProducts =
-                    FilterByScreenSize(filtersList.MinScreenSize, filtersList.MaxScreenSize, products);
-                products = filteredProducts;
-            }
-            
-            if (filtersList.Measurements!=null)
-            {
-                filteredProducts = FilterByMeasurements(filtersList.Measurements, products);
-            }
+            var filteredProducts = FilterByPortability(filtersList.IsPortable, products);
+
+            filteredProducts = FilterByMeasurements(filtersList.Measurements, filteredProducts);
+
+            filteredProducts = FilterByWeight(filtersList.MinWeight, filtersList.MaxWeight, filteredProducts);
+
+            filteredProducts = FilterByScreenSize(filtersList.MinScreenSize, filtersList.MaxScreenSize, filteredProducts);
 
             return filteredProducts;
         }
 
-        private static List<ProductDataModel> FilterByMeasurements(List<string> measurements, IEnumerable<ProductDataModel> productList)
+        private static IEnumerable<ProductDataModel> FilterByPortability(string isPortable, IEnumerable<ProductDataModel> productList)
         {
-            return (from product in productList let match = measurements.All(measurement => product.Measurement.Contains(measurement)) where match select product).ToList();
+            if (string.IsNullOrEmpty(isPortable)) return productList;
+            
+            var searchCriteria = bool.Parse(isPortable);
+            return productList.Where(product => product.Portable == searchCriteria);
+
+
+        }
+        private static IEnumerable<ProductDataModel> FilterByMeasurements(List<string> measurements, IEnumerable<ProductDataModel> productList)
+        {
+            if (measurements == null) return productList;
+            
+            return (from product in productList let match = measurements.All(measurement => product.Measurement.Contains(measurement)) where match select product);
+
         }
 
-        private static List<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
+        private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
             IEnumerable<ProductDataModel> productList)
         {
-            return productList.Where(product => product.Weight >= minWeight && product.Weight <= maxWeight).ToList();
+            if (minWeight <= 0 || maxWeight <= minWeight) return productList;
+            
+            return productList.Where(product => product.Weight >= minWeight && product.Weight <= maxWeight);
+
         }
 
-        private static List<ProductDataModel> FilterByScreenSize(double minScreenSize, double maxScreenSize,
+        private static IEnumerable<ProductDataModel> FilterByScreenSize(double minScreenSize, double maxScreenSize,
             IEnumerable<ProductDataModel> productList)
         {
-            return productList.Where(product => product.ScreenSize >= minScreenSize && product.ScreenSize <= maxScreenSize).ToList();
+            if (minScreenSize <= 0 || maxScreenSize <= minScreenSize) return productList;
+            
+            return productList.Where(product => product.ScreenSize >= minScreenSize && product.ScreenSize <= maxScreenSize);
+
+
         }
 
         
