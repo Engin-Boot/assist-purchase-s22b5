@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Web.Http.Results;
+﻿using System.Net;
 using DataAccessLayer;
 using DataModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ConflictResult = System.Web.Http.Results.ConflictResult;
 
 namespace ChatAPI.Controllers
 {
