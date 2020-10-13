@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using DataModel;
 
 namespace DataAccessLayer
 {
     public class ProductManagementMemoryDb:IProductManagement
     {
-        private static readonly List<DataModel.ProductDataModel> Db=new List<DataModel.ProductDataModel>();
+        private static readonly List<ProductDataModel> Db=new List<ProductDataModel>();
 
         public ProductManagementMemoryDb()
         {
-            Db.Add(new DataModel.ProductDataModel
+            Db.Add(new ProductDataModel
             { 
                 ProductName = "IntelliVue X3",
                 Id = 101,
@@ -28,7 +27,7 @@ namespace DataAccessLayer
                     "SPO2", "ECG"
                 }
             });
-            Db.Add(new DataModel.ProductDataModel
+            Db.Add(new ProductDataModel
             {
                 ProductName = "IntelliVue MX40",
                 Id = 102,
@@ -44,7 +43,7 @@ namespace DataAccessLayer
                 }
             });
 
-            Db.Add(new DataModel.ProductDataModel
+            Db.Add(new ProductDataModel
             {
                 ProductName = "IntelliVue MX750",
                 Id = 103,
@@ -57,24 +56,15 @@ namespace DataAccessLayer
                 Measurement = new List<string>()
             });
         }
-        public HttpStatusCode AddProduct(DataModel.ProductDataModel product)
+        public HttpStatusCode AddProduct(ProductDataModel product)
         {
-
-            try
-            {
-                product.Id = 0;
+            product.Id = 0;
                 if (string.IsNullOrEmpty(product.ProductName))
                     return HttpStatusCode.BadRequest;
 
-                product.Id = GenerateProductId();
-                Db.Add(product);
-                return HttpStatusCode.OK;
-            }
-            catch
-            {
-                return HttpStatusCode.InternalServerError;
-            }
-            
+            product.Id = GenerateProductId();
+            Db.Add(product);
+            return HttpStatusCode.OK;
         }
 
         private static int GenerateProductId()
@@ -84,22 +74,15 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public HttpStatusCode RemoveProduct(DataModel.ProductDataModel product)
+        public HttpStatusCode RemoveProduct(ProductDataModel product)
         {
-            try
-            {
             
-                foreach (var products in Db.Where(products => products.Id == product.Id))
-                {
-                    Db.Remove(products);
-                    return HttpStatusCode.OK;
-                }
-            }
-            catch (Exception)
+            foreach (var products in Db.Where(products => products.Id == product.Id))
             {
-                return HttpStatusCode.InternalServerError;
+                Db.Remove(products);
+                return HttpStatusCode.OK;
             }
-
+            
             return HttpStatusCode.BadRequest;
         }
 
@@ -109,7 +92,7 @@ namespace DataAccessLayer
             return Db;
         }
 
-        public bool UpdateProduct(DataModel.ProductDataModel product)
+        public HttpStatusCode UpdateProduct(ProductDataModel product)
         {
           //  manager.GetTransaction();
             for (var index = 0; index < Db.Count; index++) 
@@ -117,9 +100,9 @@ namespace DataAccessLayer
                     if (Db[index].Id != product.Id) continue;
                     Db.RemoveAt(index);
                     Db.Insert(index,product);
-                    return true;
+                    return HttpStatusCode.OK;
             }
-            return false;
+            return HttpStatusCode.BadRequest;
         }
     }
 }

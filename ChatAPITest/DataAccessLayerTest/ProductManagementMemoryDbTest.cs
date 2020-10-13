@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using DataAccessLayer;
-using Xunit;
 using DataModel;
+using Xunit;
 
-namespace DataAccessLayerTest
+namespace ChatAPITest.DataAccessLayerTest
 {
     
     public class ProductManagementMemoryDbTest

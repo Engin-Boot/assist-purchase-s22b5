@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using ChatAPI.Controllers;
 using DataAccessLayer;
 using Xunit;
@@ -20,7 +20,8 @@ namespace ChatAPITest
         {
             
             var list = _productController.Get();
-            Assert.True(list.Any());
+            
+            Assert.NotNull(list);
         }
         [Fact]
         public void TestAddMethod()
@@ -40,7 +41,7 @@ namespace ChatAPITest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productController.AddProduct(testProd));
+            Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
         }
         [Fact]
         public void TestRemoveMethod()
@@ -60,8 +61,8 @@ namespace ChatAPITest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productController.AddProduct(testProd));
-            Assert.True(_productController.RemoveProduct(testProd));
+            Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
+            Assert.True(_productController.RemoveProduct(testProd)==HttpStatusCode.OK);
         }
         [Fact]
         public void TestUpdateMethod()
@@ -81,9 +82,9 @@ namespace ChatAPITest
                     "SPO2", "ECG"
                 }
             };
-            Assert.True(_productController.AddProduct(testProd));
+            Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
             testProd.Portable = false;
-            Assert.True(_productController.UpdateProduct(testProd));
+            Assert.True(_productController.UpdateProduct(testProd)==HttpStatusCode.OK);
         }
 
     }

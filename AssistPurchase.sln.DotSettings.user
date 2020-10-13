@@ -6,5 +6,8 @@
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e25cc917_002D355d_002D456c_002D8af8_002D9c9553dac9b0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestGetMethod" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::E4FED6C2-BA06-4FAE-8E80-0881D5EB4124::.NETCoreApp,Version=v3.1::ChatAPITest.ProductControllerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FCABE76F-06A5-4000-B1E0-B89F232F027B::.NETCoreApp,Version=v3.1::DataAccessLayerTest.ProductManagementMemoryDbTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -26,8 +26,8 @@ namespace ChatAPI.Controllers
         {
             try
             {
-                return StatusCode(500);
-                //    return Ok(_product.GetAllProducts());
+                //return StatusCode(500);
+                    return Ok(_product.GetAllProducts());
             }
             catch
             {
@@ -37,14 +37,14 @@ namespace ChatAPI.Controllers
             
         }
         [HttpPost]
-        public HttpStatusCode AddProduct([FromBody ] ProductDataModel product)
+        public HttpStatusCode AddProduct([FromBody] ProductDataModel product)
         {
             
             return _product.AddProduct(product);
         }
 
         [HttpPut]
-        public bool UpdateProduct([FromBody] ProductDataModel product)
+        public HttpStatusCode UpdateProduct([FromBody] ProductDataModel product)
         {
             return _product.UpdateProduct(product);
         }

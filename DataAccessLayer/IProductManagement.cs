@@ -8,6 +8,6 @@ namespace DataAccessLayer
         HttpStatusCode AddProduct(DataModel.ProductDataModel product);
         HttpStatusCode RemoveProduct(DataModel.ProductDataModel product);
         IEnumerable<DataModel.ProductDataModel> GetAllProducts();
-        bool UpdateProduct(DataModel.ProductDataModel product);
+        HttpStatusCode UpdateProduct(DataModel.ProductDataModel product);
     }
 }
