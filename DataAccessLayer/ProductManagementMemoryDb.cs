@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using DataModel;
 
 namespace DataAccessLayer
 {
@@ -54,15 +57,24 @@ namespace DataAccessLayer
                 Measurement = new List<string>()
             });
         }
-        public bool AddProduct(DataModel.ProductDataModel product)
+        public HttpStatusCode AddProduct(DataModel.ProductDataModel product)
         {
-            product.Id = 0;
-            if (string.IsNullOrEmpty(product.ProductName))
-                return false;
-          
-            product.Id = GenerateProductId();
-            Db.Add(product);
-            return true;
+
+            try
+            {
+                product.Id = 0;
+                if (string.IsNullOrEmpty(product.ProductName))
+                    return HttpStatusCode.BadRequest;
+
+                product.Id = GenerateProductId();
+                Db.Add(product);
+                return HttpStatusCode.OK;
+            }
+            catch
+            {
+                return HttpStatusCode.InternalServerError;
+            }
+            
         }
 
         private static int GenerateProductId()
@@ -72,7 +84,7 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public bool RemoveProduct(DataModel.ProductDataModel product)
+        public HttpStatusCode RemoveProduct(DataModel.ProductDataModel product)
         {
             try
             {
@@ -80,18 +92,18 @@ namespace DataAccessLayer
                 foreach (var products in Db.Where(products => products.Id == product.Id))
                 {
                     Db.Remove(products);
-                    return true;
+                    return HttpStatusCode.OK;
                 }
             }
             catch (Exception)
             {
-                return false;
+                return HttpStatusCode.InternalServerError;
             }
 
-            return false;
+            return HttpStatusCode.BadRequest;
         }
 
-        public IEnumerable<DataModel.ProductDataModel> GetAllProducts()
+        public IEnumerable<ProductDataModel> GetAllProducts()
         {
           
             return Db;

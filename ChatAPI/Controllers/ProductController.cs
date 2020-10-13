@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web.Http.Results;
 using DataAccessLayer;
 using DataModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using ConflictResult = System.Web.Http.Results.ConflictResult;
 
 namespace ChatAPI.Controllers
 {
@@ -19,13 +22,22 @@ namespace ChatAPI.Controllers
         }
         // GET: api/product
         [HttpGet]
-        public IEnumerable<ProductDataModel> Get()
+        public IActionResult Get()
         {
-            Console.WriteLine(_product.GetAllProducts());
-            return _product.GetAllProducts();
+            try
+            {
+                return StatusCode(500);
+                //    return Ok(_product.GetAllProducts());
+            }
+            catch
+            {
+
+                return StatusCode(500);
+            }
+            
         }
         [HttpPost]
-        public bool AddProduct([FromBody ] ProductDataModel product)
+        public HttpStatusCode AddProduct([FromBody ] ProductDataModel product)
         {
             
             return _product.AddProduct(product);
@@ -38,7 +50,7 @@ namespace ChatAPI.Controllers
         }
 
         [HttpDelete]
-        public bool RemoveProduct([FromBody] ProductDataModel product)
+        public HttpStatusCode RemoveProduct([FromBody] ProductDataModel product)
         {
             return _product.RemoveProduct(product);
         }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
+﻿using System.Collections.Generic;
 using DataModel;
 using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace ChatAPI.Controllers
 {
@@ -36,10 +32,10 @@ namespace ChatAPI.Controllers
 
          // POST: api/chatapp
          [HttpPost]
-         public bool Post([FromBody] Mailer mailData)
-         {
-            return _sendEmail.SendEmailViaWebApi(mailData.ProductNameList, mailData.customerEmailId);
-         }
+        public HttpStatusCode Post([FromBody] Mailer mailData)
+        {
+            return _sendEmail.SendEmailViaWebApi(mailData.ProductNameList, mailData.CustomerEmailId);
+        }
          
     }
 }

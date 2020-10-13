@@ -4,13 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace ChatAPI.Utils
 {
     public class SendEmail
     {
-        public bool SendEmailViaWebApi(IEnumerable<string> productNameList, string customerMailId)
+        public HttpStatusCode SendEmailViaWebApi(IEnumerable<string> productNameList, string customerMailId)
         {
             try
             {
@@ -38,15 +39,15 @@ namespace ChatAPI.Utils
                 }
 
                 smtp.Send("Sender@Email.com", "receiver@Email.com", "Alert: Customer Requirement", mailBody.ToString());
-                return true;
+                return HttpStatusCode.OK;
             }
             catch (SmtpException)
             {
-                return true;
+                return HttpStatusCode.BadRequest;
             }
             catch (Exception)
             {
-                return false;
+                return HttpStatusCode.InternalServerError;
             }
         }
     }
