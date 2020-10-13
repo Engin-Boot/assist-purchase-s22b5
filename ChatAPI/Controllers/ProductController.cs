@@ -7,7 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatAPI.Controllers
 {
-    [Route("api/product"), ApiController]
+    [Route("api/product")]
+    [ApiController]
     public class ProductController : ControllerBase
     {
         private readonly IProductManagement _product;
@@ -16,7 +17,7 @@ namespace ChatAPI.Controllers
             _product = product;
            
         }
-        // GET: api/Product
+        // GET: api/product
         [HttpGet]
         public IEnumerable<ProductDataModel> Get()
         {

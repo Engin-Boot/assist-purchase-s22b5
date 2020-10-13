@@ -49,7 +49,7 @@ namespace ChatAPI.Utils
         private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
             IEnumerable<ProductDataModel> productList)
         {
-            if (minWeight <= 0 || maxWeight <= minWeight) return productList;
+            if (minWeight > 0 && maxWeight > minWeight) return productList;
             
             return productList.Where(product => product.Weight >= minWeight && product.Weight <= maxWeight);
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using DataModel;
 using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +12,21 @@ namespace ChatAPI.Controllers
 {
     [Route("api/chatapp")]
     [ApiController]
+    
     public class ChatAppController : ControllerBase
     {
         private readonly FilterUtil _filter;
+        private readonly SendEmail _sendEmail;
         
 
         public ChatAppController(DataAccessLayer.IProductManagement productDb )
         {
             _filter = new FilterUtil(productDb);
+            _sendEmail = new SendEmail();
            
         }
 
-        // GET: api/chat-app
+        // GET: api/chatapp
         [HttpGet]
         public IEnumerable<ProductDataModel> FilterProducts([FromQuery] Filter filtersList)
         {
@@ -29,41 +34,12 @@ namespace ChatAPI.Controllers
         }
         
 
-         // POST: api/ChatApp
+         // POST: api/chatapp
          [HttpPost]
-         public bool Post([FromBody] string productName,[FromBody] string stringEmail)
+         public bool Post([FromBody] Mailer mailData)
          {
-            return SendEmailViaWebApi(productName,stringEmail);
+            return _sendEmail.SendEmailViaWebApi(mailData.ProductNameList, mailData.customerEmailId);
          }
-         private bool SendEmailViaWebApi(string productName, string stringEmail)
-         {
-             try
-             {
-                 using SmtpClient smtp = new SmtpClient
-                 {
-                     DeliveryMethod = SmtpDeliveryMethod.Network,
-                     UseDefaultCredentials = false,
-                     EnableSsl = true,
-                     Host = "smtp.gmail.com",
-                     Port = 587,
-                     Credentials = new NetworkCredential("Sender Username", "Sender Password")
-                 };
-                 // send the email
-                 var body = "The customer has selected this "+ "\nProductName: "+productName+"\nCustomer Email:" +stringEmail;
-                 smtp.Send("Sender@Email.com", "receiver@Email.com", "Test Email Subject", body);
-                 return true;
-             }
-             catch (SmtpException)
-             {
-                 return true;
-             }
-             catch (Exception)
-             {
-                 return false;
-             }
-
-             
-             
-         }
+         
     }
 }
