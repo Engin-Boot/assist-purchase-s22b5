@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatAPI", "ChatAPI\ChatAPI.csproj", "{58DE7FF3-D4B0-45C9-A2B8-4B56F0DF2268}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatAPITest", "ChatAPITest\ChatAPITest.csproj", "{E4FED6C2-BA06-4FAE-8E80-0881D5EB4124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistPurchaseTest", "ChatAPITest\AssistPurchaseTest.csproj", "{E4FED6C2-BA06-4FAE-8E80-0881D5EB4124}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{FAA62093-EE37-4EE1-BAAC-26B6B6D7CCDD}"
 EndProject
