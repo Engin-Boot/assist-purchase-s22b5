@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Net;
 using ChatAPI.Controllers;
 using ChatAPI.Utils;
 using DataAccessLayer;
@@ -11,21 +10,22 @@ namespace ChatAPITest
     public class ChatAppControllerTest
     {
         private readonly ChatAppController _chatAppController;
-        private readonly IProductManagement _productDb;
 
         public ChatAppControllerTest()
         {
-            _productDb = new ProductManagementMemoryDb();
-            _chatAppController = new ChatAppController(_productDb);
+            IProductManagement productDb = new ProductManagementMemoryDb();
+            _chatAppController = new ChatAppController(productDb);
         }
 
         [Fact]
         public void WhenCustomerMailIdIsInvalidThenReturnTrue()
-        {   
-            var dummyMailData = new Mailer();
-            dummyMailData.CustomerEmailId = "test@test.com";
-            dummyMailData.ProductNameList = new List<string>(){ "MX450", "MX7500"};
+        {
+            var dummyMailData = new Mailer
+            {
+                CustomerEmailId = "test@test.com", ProductNameList = new List<string>() {"MX450", "MX7500"}
+            };
             var response = _chatAppController.Post(dummyMailData);
+            Assert.True(response==HttpStatusCode.BadRequest);
         }
     }
 }
