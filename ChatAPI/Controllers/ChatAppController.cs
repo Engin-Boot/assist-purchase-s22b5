@@ -31,11 +31,11 @@ namespace ChatAPI.Controllers
 
          // POST: api/ChatApp
          [HttpPost]
-         public bool Post()
+         public bool Post([FromBody] string productName,[FromBody] string stringEmail)
          {
-            return SendEmailViaWebApi();
+            return SendEmailViaWebApi(productName,stringEmail);
          }
-         private bool SendEmailViaWebApi()
+         private bool SendEmailViaWebApi(string productName, string stringEmail)
          {
              try
              {
@@ -49,7 +49,8 @@ namespace ChatAPI.Controllers
                      Credentials = new NetworkCredential("Sender Username", "Sender Password")
                  };
                  // send the email
-                 smtp.Send("Sender@Email.com", "receiver@Email.com", "Test Email Subject", " Test Message Body");
+                 var body = "The customer has selected this "+ "\nProductName: "+productName+"\nCustomer Email:" +stringEmail;
+                 smtp.Send("Sender@Email.com", "receiver@Email.com", "Test Email Subject", body);
                  return true;
              }
              catch (SmtpException)
