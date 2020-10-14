@@ -26,5 +26,8 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release --no-restore
      
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Run Unit Tests
+      run: dotnet test --filter "DisplayName!~ProductControllerIntegrationTest&DisplayName!~ChatAppControllerIntegrationTest" --no-restore --verbosity normal
+
+    - name: Run Integration Tests
+      run: powershell ./PowershellScripts/RunIntegrationTest.ps1

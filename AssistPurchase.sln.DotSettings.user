@@ -2,12 +2,8 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\320087402\.nuget\packages\microsoft.aspnet.webapi.core\5.2.7\lib\net45\System.Web.Http.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=747aa647_002Dddbd_002D4c7b_002Da2c8_002Df5073a504897/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ProductManagementMemoryDbTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45844158_002D56e8_002D45d9_002D99b3_002D6948c1e145d3/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="3" IsActive="True" Name="All tests from &amp;lt;AssistPurchaseTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\320087402\OneDrive - Philips\Documents\BootCampWorkspace\VisualStudioSpace\12_CaseStudy2\assist-purchase-s22b5\AssistPurchaseTest" Presentation="&amp;lt;AssistPurchaseTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e25cc917_002D355d_002D456c_002D8af8_002D9c9553dac9b0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestGetMethod" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::E4FED6C2-BA06-4FAE-8E80-0881D5EB4124::.NETCoreApp,Version=v3.1::ChatAPITest.ProductControllerTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::FCABE76F-06A5-4000-B1E0-B89F232F027B::.NETCoreApp,Version=v3.1::DataAccessLayerTest.ProductManagementMemoryDbTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	</wpf:ResourceDictionary>

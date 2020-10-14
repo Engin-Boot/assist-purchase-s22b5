@@ -24,9 +24,17 @@ namespace ChatAPI.Controllers
 
         // GET: api/chatapp
         [HttpGet]
-        public IEnumerable<ProductDataModel> FilterProducts([FromQuery] Filter filtersList)
+        public IActionResult FilterProducts([FromQuery] Filter filtersList)
         {
-            return _filter.ProductFilter(filtersList);
+            try
+            {
+                return Ok(_filter.ProductFilter(filtersList));
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+            
         }
         
 
