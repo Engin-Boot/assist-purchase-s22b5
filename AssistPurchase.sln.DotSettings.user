@@ -2,8 +2,16 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\320087402\.nuget\packages\microsoft.aspnet.webapi.core\5.2.7\lib\net45\System.Web.Http.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45844158_002D56e8_002D45d9_002D99b3_002D6948c1e145d3/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="3" IsActive="True" Name="All tests from &amp;lt;AssistPurchaseTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45844158_002D56e8_002D45d9_002D99b3_002D6948c1e145d3/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="3" Name="All tests from &amp;lt;AssistPurchaseTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\320087402\OneDrive - Philips\Documents\BootCampWorkspace\VisualStudioSpace\12_CaseStudy2\assist-purchase-s22b5\AssistPurchaseTest" Presentation="&amp;lt;AssistPurchaseTest&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=69f65c76_002D4b66_002D4c46_002Da5cf_002D2d2b493db0ba/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f079469c_002Dcc5d_002D48b2_002Da6fd_002D2f0f65054123/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestProgram" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::40804FAD-C992-4CBB-9899-15D3D9842184::.NETCoreApp,Version=v3.1::AssistPurchaseTest.ChatAPITest.UtilsTest.TestProgram&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>
