@@ -45,7 +45,7 @@ namespace DataAccessLayer
 
 
             // Insert Data 1
-            cmd.CommandText = "INSERT INTO MonitoringProducts(productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) VALUES('IntelliVue X3','Intellivue','X3',7.1,1300,true,'1024*720')";
+            cmd.CommandText = "INSERT INTO MonitoringProducts(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) VALUES(1, 'IntelliVue X3', 'Intellivue','X3',7.1,1300,true,'1024*720')";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO MonitoringMeasurements( productName, measurements) VALUES('IntelliVue X3','SPO2')";
@@ -56,7 +56,7 @@ namespace DataAccessLayer
 
 
             // Insert Data 2
-            cmd.CommandText = "INSERT INTO MonitoringProducts(productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) VALUES('IntelliVue MX40','Intellivue','MX40',12,1400,false,'1024*920')";
+            cmd.CommandText = "INSERT INTO MonitoringProducts(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) VALUES(2, 'IntelliVue MX40','Intellivue','MX40',12,1400,false,'1024*920')";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO MonitoringMeasurements( productName, measurements) VALUES('IntelliVue MX40','SPO2')";
@@ -77,11 +77,12 @@ namespace DataAccessLayer
                 var cmd = new SQLiteCommand(_con)
                 {
                     CommandText =
-                        @"INSERT INTO MonitoringProducts(productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
+                        @"INSERT INTO MonitoringProducts(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
                                     VALUES
-                                    (@productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution)"
+                                    (@id, @productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution)"
                 };
 
+                cmd.Parameters.AddWithValue("@id", product.Id);
                 cmd.Parameters.AddWithValue("@productName", product.ProductName);
                 cmd.Parameters.AddWithValue("@productSeries", product.ProductSeries);
                 cmd.Parameters.AddWithValue("@productModel", product.ProductModel);

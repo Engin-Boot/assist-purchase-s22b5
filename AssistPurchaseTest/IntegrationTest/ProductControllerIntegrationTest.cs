@@ -15,6 +15,26 @@ namespace AssistPurchaseTest.IntegrationTest
             _restClient = new RestClient("http://localhost:53951/api");
             _request = new RestRequest("product");
         }
+
+        private ProductDataModel GetProductDataModelObject(int id, string productName)
+        {
+            var testProductDataModel = new ProductDataModel
+            {
+                ProductName = productName,
+                Id = id,
+                ProductSeries = "Intellivue",
+                ProductModel = "X3333",
+                Weight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                ScreenSize = 5,
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            return testProductDataModel;
+        }
         [Fact]
         public void TestGetData()
         {
@@ -29,23 +49,16 @@ namespace AssistPurchaseTest.IntegrationTest
         }
 
         [Fact]
-        public void TestAddData()
+        public void IntegrationTest()
         {
-            var testProductDataModel = new ProductDataModel
-            {
-                ProductName = "IntelliVue X3333",
-                Id = 112,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3333",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var testProductDataModel = GetProductDataModelObject(11, "Test2");
+            TestAddData(testProductDataModel);
+            TestUpdateData(testProductDataModel);
+            TestRemoveData(testProductDataModel);
+        }
+        private void TestAddData(ProductDataModel testProductDataModel)
+        {
+           
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
             _request.AddJsonBody(testProductDataModel);
             var data = _restClient.Post(_request);
@@ -56,24 +69,9 @@ namespace AssistPurchaseTest.IntegrationTest
             Assert.Equal(HttpStatusCode.OK, output);
 
         }
-        [Fact]
-        public void TestRemoveData()
+        
+        private void TestRemoveData(ProductDataModel testProductDataModel)
         {
-            var testProductDataModel = new ProductDataModel
-            {
-                ProductName = "IntelliVue X333",
-                Id = 111,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
             _request.AddJsonBody(testProductDataModel);
             var data = _restClient.Delete(_request);
@@ -84,24 +82,10 @@ namespace AssistPurchaseTest.IntegrationTest
             Assert.Equal(HttpStatusCode.OK, output);
 
         }
-        [Fact]
-        public void TestUpdateData()
+
+        private void TestUpdateData(ProductDataModel testProductDataModel)
         {
-            var testProductDataModel = new ProductDataModel
-            {
-                ProductName = "IntelliVue X333",
-                Id = 111,
-                ProductSeries = "Intellivue",
-                ProductModel = "MX750",
-                Weight = 5000,
-                Portable = false,
-                MonitorResolution = "1024*1020",
-                ScreenSize = 29,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            testProductDataModel.Weight = 900;
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
             _request.AddJsonBody(testProductDataModel);
             var data = _restClient.Put(_request);
