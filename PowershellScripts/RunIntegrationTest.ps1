@@ -6,12 +6,12 @@ function Kill-Tree {
 
 $serverProcess = Start-Process powershell -ArgumentList ".\PowershellScripts\RunServer.ps1" -PassThru;
 
-Write-Host "Started sleeping"
-Start-Sleep -Seconds 20
-Write-Host "done sleeping"
+Write-Host "Waiting 60 seconds to Build and Run the ChatAPI project "
+Start-Sleep -Seconds 60
+Write-Host "Done sleeping"
 
 dotnet test --filter "DisplayName~ProductControllerIntegrationTest|DisplayName~ChatAppControllerIntegrationTest" --no-restore --verbosity normal
 
-Write-Host "test completed"
+Write-Host "Integration Test completed"
 Start-Sleep -Seconds 5
 Kill-Tree $serverProcess.Id
