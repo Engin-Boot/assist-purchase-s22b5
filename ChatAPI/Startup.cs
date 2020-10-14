@@ -20,7 +20,7 @@ namespace ChatAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IProductManagement, ProductManagementMemoryDb>();
+            services.AddSingleton<IProductManagement, ProjectManagementSqLite>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
