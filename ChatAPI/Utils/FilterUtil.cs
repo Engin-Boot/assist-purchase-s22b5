@@ -34,16 +34,39 @@ namespace ChatAPI.Utils
             if (string.IsNullOrEmpty(isPortable)) return productList;
             
             var searchCriteria = bool.Parse(isPortable);
-            return productList.Where(product => product.Portable == searchCriteria);
 
+            var filteredList = new List<ProductDataModel>();
 
+            foreach (var product in productList)
+            {
+                if (product.Portable == searchCriteria)
+                {
+                    filteredList.Add(product);
+                }
+            }
+            return filteredList;  
         }
         private static IEnumerable<ProductDataModel> FilterByMeasurements(List<string> measurements, IEnumerable<ProductDataModel> productList)
         {
             if (measurements == null) return productList;
-            
-            return (from product in productList let match = measurements.All(measurement => product.Measurement.Contains(measurement)) where match select product);
 
+            var filteredList = new List<ProductDataModel>();
+            foreach (var product in productList)
+            {
+                var match = true;
+                foreach (var measurement in measurements)
+                {
+                    if (product.Measurement.Contains(measurement))continue;
+                    match = false;
+                    break;
+                }
+
+                if (match)
+                {
+                    filteredList.Add(product);
+                }
+            }
+            return filteredList;
         }
 
         private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
@@ -51,8 +74,16 @@ namespace ChatAPI.Utils
         {
             if (minWeight < 0 || maxWeight <= minWeight) return productList;
             
-            return productList.Where(product => product.Weight >= minWeight && product.Weight <= maxWeight);
-
+            var filteredList = new List<ProductDataModel>();
+            
+            foreach (var product in productList)
+            {
+                if (product.Weight >= minWeight && product.Weight <= maxWeight)
+                {
+                    filteredList.Add(product);
+                }
+            }
+            return filteredList;
         }
 
         private static IEnumerable<ProductDataModel> FilterByScreenSize(double minScreenSize, double maxScreenSize,
@@ -60,9 +91,17 @@ namespace ChatAPI.Utils
         {
             if (minScreenSize <= 0 || maxScreenSize <= minScreenSize) return productList;
             
-            return productList.Where(product => product.ScreenSize >= minScreenSize && product.ScreenSize <= maxScreenSize);
+            var filteredList = new List<ProductDataModel>();
+            
+            foreach (var product in productList)
+            {
+                if (product.ScreenSize >= minScreenSize && product.ScreenSize <= maxScreenSize)
+                {
+                    filteredList.Add(product);
+                }
+            }
 
-
+            return filteredList;
         }
 
         

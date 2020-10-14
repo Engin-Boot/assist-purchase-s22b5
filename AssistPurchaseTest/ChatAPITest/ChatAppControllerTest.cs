@@ -47,7 +47,7 @@ namespace AssistPurchaseTest.ChatAPITest
         {
             var dummyFilter = new Filter
             {
-                Measurements = new List<string>(){"SPO2"}
+                Measurements = new List<string>(){"SPO2", "ECG"}
             };
             var response = _chatAppController.FilterProducts(dummyFilter);
             var responseObject = response as OkObjectResult;
