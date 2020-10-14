@@ -17,7 +17,7 @@ namespace ChatAPI.Utils
         public IEnumerable<ProductDataModel> ProductFilter(Filter filtersList)
         {
             var products = _productDb.GetAllProducts();
-            
+
             var filteredProducts = FilterByPortability(filtersList.IsPortable, products);
 
             filteredProducts = FilterByMeasurements(filtersList.Measurements, filteredProducts);
@@ -49,7 +49,7 @@ namespace ChatAPI.Utils
         private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
             IEnumerable<ProductDataModel> productList)
         {
-            if (minWeight > 0 && maxWeight > minWeight) return productList;
+            if (minWeight < 0 || maxWeight <= minWeight) return productList;
             
             return productList.Where(product => product.Weight >= minWeight && product.Weight <= maxWeight);
 
