@@ -12,7 +12,7 @@ namespace AssistPurchaseTest.IntegrationTest
         public ProductControllerIntegrationTest()
         {
             _restClient = new RestClient("http://localhost:53951/api");
-            _request = new RestRequest("product/");
+            _request = new RestRequest("product");
         }
         [Fact]
         public void TestAddData()
@@ -22,8 +22,8 @@ namespace AssistPurchaseTest.IntegrationTest
             var deserialize = new JsonDeserializer();
             var output = deserialize.Deserialize<List<ProductDataModel>>(data);
 
-            Assert.True(output[0].Id == 101);
-            Assert.True(output[1].Id == 102);
+            Assert.True(output[0].Id == 1);
+            Assert.True(output[1].Id == 2);
             Assert.True(output[0].Portable);
         }
     }

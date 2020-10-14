@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
 using ChatAPI.Controllers;
 using DataAccessLayer;
 using Xunit;
@@ -25,9 +26,11 @@ namespace AssistPurchaseTest.ChatAPITest
         [Fact]
         public void TestAddMethod()
         {
+            var num = RandomNumberGenerator.GetInt32(100);
             var testProd=new DataModel.ProductDataModel()
             {
-                ProductName = "IntelliVue X3",
+                
+                ProductName = "IntelliVue MX"+num,
                 Id = 0,
                 ProductSeries = "Intellivue",
                 ProductModel = "X3",

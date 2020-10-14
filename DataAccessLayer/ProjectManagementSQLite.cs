@@ -26,7 +26,7 @@ namespace DataAccessLayer
             //Create Table MonitoringProducts
             cmd.CommandText = @"CREATE TABLE MonitoringProducts(
                                 id INTEGER PRIMARY KEY,
-                                productName TEXT, 
+                                productName TEXT NOT NULL UNIQUE, 
                                 productSeries TEXT, 
                                 productModel TEXT,
                                 screenSize REAL, 
@@ -37,7 +37,7 @@ namespace DataAccessLayer
 
             //Create Table MonitoringMeasurements
             cmd.CommandText = @"CREATE TABLE MonitoringMeasurements(
-                                productName TEXT, 
+                                productName TEXT NOT NULL, 
                                 measurements TEXT,
                                 FOREIGN KEY(productName) REFERENCES MonitoringProducts(productName) ON DELETE CASCADE
                                 )";
@@ -61,16 +61,26 @@ namespace DataAccessLayer
 
             cmd.CommandText = "INSERT INTO MonitoringMeasurements( productName, measurements) VALUES('IntelliVue MX40','SPO2')";
             cmd.ExecuteNonQuery();
+            _con.Close();
         }
 
         public HttpStatusCode AddProduct(ProductDataModel product)
         {
             try
             {
-                var cmd = new SQLiteCommand(_con);
-                cmd.CommandText = @"INSERT INTO MonitoringProducts(productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
+                _con.Open();
+                if (string.IsNullOrEmpty(product.ProductName))
+                {
+                    throw new Exception();
+                }
+
+                var cmd = new SQLiteCommand(_con)
+                {
+                    CommandText =
+                        @"INSERT INTO MonitoringProducts(productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
                                     VALUES
-                                    (@productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution)";
+                                    (@productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution)"
+                };
 
                 cmd.Parameters.AddWithValue("@productName", product.ProductName);
                 cmd.Parameters.AddWithValue("@productSeries", product.ProductSeries);
@@ -95,11 +105,15 @@ namespace DataAccessLayer
                     cmd.ExecuteNonQuery();
 
                 }
-                
+
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return HttpStatusCode.InternalServerError;
+            }
+            finally
+            {
+                _con.Close();
             }
 
             return HttpStatusCode.OK;
@@ -109,11 +123,16 @@ namespace DataAccessLayer
         {
             try
             {
+                _con.Open();
                 var cmd = new SQLiteCommand(_con)
                 {
                     CommandText = $@"DELETE FROM MonitoringProducts WHERE id='{product.Id}'"
                 };
-                cmd.ExecuteNonQuery();
+                var rows=cmd.ExecuteNonQuery();
+                if (rows == 0)
+                {
+                    return HttpStatusCode.BadRequest;
+                }
 
                 cmd.CommandText = $@"DELETE FROM MonitoringMeasurements WHERE productName='{product.ProductName}'";
                 cmd.ExecuteNonQuery();
@@ -124,6 +143,10 @@ namespace DataAccessLayer
             {
                 return HttpStatusCode.InternalServerError;
             }
+            finally
+            {
+                _con.Close();
+            }
 
             return HttpStatusCode.OK;
         }
@@ -131,6 +154,7 @@ namespace DataAccessLayer
 
         public IEnumerable<ProductDataModel> GetAllProducts()
         {
+            _con.Open();
             var list = new List<ProductDataModel>();
 
 
@@ -173,6 +197,7 @@ namespace DataAccessLayer
                     Measurement = measurements
                 });
             }
+            _con.Close();
             return list;
         }
 
@@ -183,6 +208,7 @@ namespace DataAccessLayer
             var addStatusCode=AddProduct(product);
             if(removeStatusCode==HttpStatusCode.OK && addStatusCode==HttpStatusCode.OK)
                 return HttpStatusCode.OK;
+
             return HttpStatusCode.InternalServerError;
         }
     }
