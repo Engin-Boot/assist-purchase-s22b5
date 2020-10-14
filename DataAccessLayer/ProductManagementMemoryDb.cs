@@ -93,7 +93,6 @@ namespace DataAccessLayer
 
         public HttpStatusCode UpdateProduct(ProductDataModel product)
         {
-          //  manager.GetTransaction();
             for (var index = 0; index < Db.Count; index++) 
             {
                     if (Db[index].Id != product.Id) continue;
