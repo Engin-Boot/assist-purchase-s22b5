@@ -91,12 +91,12 @@ paths:
         "500":
           description: "SQL Exception / Wrong Data provided"
 
-  /chat-api/:
+  /chatapp/:
     post:
       tags:
       - "ChatAPP"
       summary: "Sends an email to Sales Team"
-      description: "Sends an email to the sales team based on the product selected by customer"
+      description: "Sends an email to the sales team based on the product selected by customer\nEmpty Query String will return complete List"
       operationId: "send"
       produces:
       - "application/json"
