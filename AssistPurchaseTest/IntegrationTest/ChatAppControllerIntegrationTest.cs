@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using RestSharp;
-using RestSharp.Serialization.Json;
-using Xunit;
+﻿using Xunit;
 
 namespace AssistPurchaseTest.IntegrationTest
 {

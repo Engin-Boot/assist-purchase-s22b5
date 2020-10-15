@@ -176,8 +176,6 @@ namespace DataAccessLayer
 
                 var measurements = new List<string>();
                 var prodName = rdr.GetString(1);
-                //Console.WriteLine(prodName);
-                //Console.WriteLine($"{rdr.GetInt32(0)} {rdr.GetString(1)} {rdr.GetString(2)} {rdr.GetString(3)} {rdr.GetDouble(4)} {rdr.GetDouble(5)} {rdr.GetBoolean(6)} {rdr.GetString(7)}");
                 while (rdr2.Read())
                 {
                     if (rdr2.GetString(0) == prodName)

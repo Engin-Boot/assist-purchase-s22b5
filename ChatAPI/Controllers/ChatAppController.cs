@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using DataModel;
-using ChatAPI.Utils;
+﻿using ChatAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
