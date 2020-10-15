@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-	with:
+        with:
            dotnet-version: 3.1.402
       
       - name: Install resharper
