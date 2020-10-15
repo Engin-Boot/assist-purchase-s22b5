@@ -16,34 +16,47 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             _productManagement = new ProductManagementSqLite();
         }
         [Fact]
-        public void TestAddProduct()
+        public void TestValidProductDataAddition()
         {
             var testProd = Helper.GetProductDataModelObject(41, "Test41");
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.OK);
-            testProd = new ProductDataModel();
-            Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.InternalServerError);
+
+            _productManagement.RemoveProduct(testProd);
 
         }
         [Fact]
-        public void TestRemoveProduct()
+        public void TestInvalidProductDataAddition()
+        {
+            var testProd = new ProductDataModel();
+            Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
+        public void TestValidProductDataRemove()
         {
             var testProd = Helper.GetProductDataModelObject(41, "Test41");
             _productManagement.AddProduct(testProd);
             Assert.True(_productManagement.RemoveProduct(testProd) == HttpStatusCode.OK);
-            testProd = Helper.GetProductDataModelObject(-1, "Test42");
+        }
+
+        [Fact]
+        public void TestInvalidProductDataRemove()
+        {
+            var testProd = Helper.GetProductDataModelObject(-1, "Test42");
             Assert.True(_productManagement.RemoveProduct(testProd) == HttpStatusCode.BadRequest);
         }
+
         [Fact]
-        public void TestUpdateProduct()
+        public void TestProductDataUpdate()
         {
             var testProd = Helper.GetProductDataModelObject(3, "Test3");
             _productManagement.AddProduct(testProd);
             testProd.Portable = false;
             Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.OK);
-            
-            testProd = Helper.GetProductDataModelObject(-1, "Test45");
-            Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.InternalServerError);
+
+            _productManagement.RemoveProduct(testProd);
         }
+
         [Fact]
         public void TestShowAllProducts()
         {

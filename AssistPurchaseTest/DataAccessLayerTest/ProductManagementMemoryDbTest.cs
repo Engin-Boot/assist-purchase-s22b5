@@ -19,13 +19,15 @@ namespace AssistPurchaseTest.DataAccessLayerTest
 
         
         [Fact]
-        public void TestValidDataAddition()
+        public void TestValidProductDataAddition()
         {
             var testProd = Helper.GetProductDataModelObject(10,"Test10");
             Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.OK);
+            
+            _productManagement.RemoveProduct(testProd);
         }
         [Fact]
-        public void TestInvalidDataAddition()
+        public void TestInvalidProductDataAddition()
         {
             var testProd = new ProductDataModel();
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);

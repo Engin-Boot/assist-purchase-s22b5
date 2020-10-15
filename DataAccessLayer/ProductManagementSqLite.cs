@@ -64,14 +64,14 @@ namespace DataAccessLayer
             _con.Close();
         }
 
-        public HttpStatusCode AddProduct(ProductDataModel product)
+        public HttpStatusCode AddProduct(ProductDataModel product)  
         {
             try
             {
                 _con.Open();
                 if (string.IsNullOrEmpty(product.ProductName))
                 {
-                    throw new Exception();
+                    return HttpStatusCode.BadRequest;
                 }
 
                 var cmd = new SQLiteCommand(_con)

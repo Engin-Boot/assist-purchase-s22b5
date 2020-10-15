@@ -77,7 +77,6 @@ namespace AssistPurchaseTest.IntegrationTest
             var output = deserialize.Deserialize<HttpStatusCode>(data);
 
             Assert.Equal(HttpStatusCode.OK, output);
-
         }
 
     }
