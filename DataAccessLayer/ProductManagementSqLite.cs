@@ -9,7 +9,7 @@ namespace DataAccessLayer
 {
     public class ProductManagementSqLite: IProductManagement
     {
-        private readonly SQLiteConnection _con;
+        private SQLiteConnection _con;
         public ProductManagementSqLite()
         {
             var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
@@ -21,6 +21,8 @@ namespace DataAccessLayer
         {
             try
             {
+                var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
+                _con = new SQLiteConnection(cs);
                 _con.Open();
                 if (string.IsNullOrEmpty(product.ProductName))
                 {
@@ -77,6 +79,9 @@ namespace DataAccessLayer
         {
             try
             {
+                var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
+
+                _con = new SQLiteConnection(cs);
                 _con.Open();
                 var cmd = new SQLiteCommand(_con)
                 {
@@ -108,6 +113,9 @@ namespace DataAccessLayer
 
         public IEnumerable<ProductDataModel> GetAllProducts()
         {
+            var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
+
+            _con = new SQLiteConnection(cs);
             _con.Open();
             var list = new List<ProductDataModel>();
 

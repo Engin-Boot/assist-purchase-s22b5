@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
-using System.Threading;
 using DataAccessLayer;
 using DataModel;
 using AssistPurchaseTest.Util;
@@ -21,7 +20,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestValidProductDataAddition()
         {
-            Thread.Sleep(100);
             var num = RandomNumberGenerator.GetInt32(1000) + 10;
             var testProd = Helper.GetProductDataModelObject(num, "Test"+num);
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.OK);
@@ -32,7 +30,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestInvalidProductDataAddition()
         {
-            Thread.Sleep(100);
             var testProd = new ProductDataModel();
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);
         }
@@ -40,7 +37,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestValidProductDataRemove()
         {
-            Thread.Sleep(100);
             var num = RandomNumberGenerator.GetInt32(1000) + 10;
             var testProd = Helper.GetProductDataModelObject(num, "Test"+num);
             _productManagement.AddProduct(testProd);
@@ -50,7 +46,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestInvalidProductDataRemove()
         {
-            Thread.Sleep(100);
             var testProd = Helper.GetProductDataModelObject(-999, "Test42");
             Assert.True(_productManagement.RemoveProduct(testProd) == HttpStatusCode.BadRequest);
         }
@@ -58,7 +53,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestProductDataUpdate()
         {
-            Thread.Sleep(100);
             var num = RandomNumberGenerator.GetInt32(1000) + 10;
             var testProd = Helper.GetProductDataModelObject(num, "Test"+num);
             _productManagement.AddProduct(testProd);
@@ -72,7 +66,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestShowAllProducts()
         {
-            Thread.Sleep(100);
             var productList = _productManagement.GetAllProducts();
             Assert.True(productList.Any());
         }
