@@ -364,3 +364,4 @@ FodyWeavers.xsd
 # user added ignore
 **/bin/**
 **/obj/**
+AssistPurchase.sln.DotSettings.user
