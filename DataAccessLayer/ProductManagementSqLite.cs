@@ -9,27 +9,27 @@ namespace DataAccessLayer
 {
     public class ProductManagementSqLite: IProductManagement
     {
-        private SQLiteConnection _con;
-        public ProductManagementSqLite()
+        
+        /*public ProductManagementSqLite()
         {
-            var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
+            *//*var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
 
-            _con = new SQLiteConnection(cs);
-        }
+            _con = new SQLiteConnection(cs);*//*
+        }*/
 
         public HttpStatusCode AddProduct(ProductDataModel product)  
         {
+            var con = GetConnection();
             try
             {
-                var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
-                _con = new SQLiteConnection(cs);
-                _con.Open();
+                
+                con.Open();
                 if (string.IsNullOrEmpty(product.ProductName))
                 {
                     return HttpStatusCode.BadRequest;
                 }
 
-                var cmd = new SQLiteCommand(_con)
+                var cmd = new SQLiteCommand(con)
                 {
                     CommandText =
                         @"INSERT INTO MonitoringProducts(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
@@ -69,7 +69,7 @@ namespace DataAccessLayer
             }
             finally
             {
-                _con.Close();
+                con.Close();
             }
 
             return HttpStatusCode.OK;
@@ -77,13 +77,12 @@ namespace DataAccessLayer
 
         public HttpStatusCode RemoveProduct(ProductDataModel product)
         {
+            var con = GetConnection();
             try
             {
-                var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
 
-                _con = new SQLiteConnection(cs);
-                _con.Open();
-                var cmd = new SQLiteCommand(_con)
+                con.Open();
+                var cmd = new SQLiteCommand(con)
                 {
                     CommandText = $@"DELETE FROM MonitoringProducts WHERE id='{product.Id}'"
                 };
@@ -104,7 +103,7 @@ namespace DataAccessLayer
             }
             finally
             {
-                _con.Close();
+                con.Close();
             }
 
             return HttpStatusCode.OK;
@@ -113,16 +112,14 @@ namespace DataAccessLayer
 
         public IEnumerable<ProductDataModel> GetAllProducts()
         {
-            var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
-
-            _con = new SQLiteConnection(cs);
-            _con.Open();
+            var con = GetConnection();
+                con.Open();
             var list = new List<ProductDataModel>();
 
 
             var stm = @"SELECT p.id, p.productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution 
                         FROM MonitoringProducts p";
-            using var cmd1 = new SQLiteCommand(stm, _con);
+            using var cmd1 = new SQLiteCommand(stm, con);
             using var rdr = cmd1.ExecuteReader();
 
 
@@ -132,7 +129,7 @@ namespace DataAccessLayer
             {
                 var stm2 = @"SELECT productName, measurements 
                          FROM MonitoringMeasurements";
-                using var cmd2 = new SQLiteCommand(stm2, _con);
+                using var cmd2 = new SQLiteCommand(stm2, con);
                 using var rdr2 = cmd2.ExecuteReader();
 
                 var measurements = new List<string>();
@@ -157,7 +154,7 @@ namespace DataAccessLayer
                     Measurement = measurements
                 });
             }
-            _con.Close();
+            con.Close();
             return list;
         }
 
@@ -170,6 +167,13 @@ namespace DataAccessLayer
                 return HttpStatusCode.OK;
 
             return HttpStatusCode.InternalServerError;
+        }
+
+        private static SQLiteConnection GetConnection()
+        {
+            var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
+            var con = new SQLiteConnection(cs);
+            return con;
         }
     }
 }
