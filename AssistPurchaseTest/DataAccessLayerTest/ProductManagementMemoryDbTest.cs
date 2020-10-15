@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using DataAccessLayer;
+using AssistPurchaseTest.Util;
 using DataModel;
 using Xunit;
 
@@ -16,95 +16,39 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         {
             _productManagement=new ProductManagementMemoryDb();
         }
-        [Fact]
-        public void TestAddProduct()
-        {
-            var testProd = new ProductDataModel {
-                ProductName = "IntelliVue X3",
-                Id = 104,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
-            Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.OK);
-            testProd=new ProductDataModel();
-            Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.BadRequest);
 
+        
+        [Fact]
+        public void TestValidDataAddition()
+        {
+            var testProd = Helper.GetProductDataModelObject(10,"Test10");
+            Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.OK);
+        }
+        [Fact]
+        public void TestInvalidDataAddition()
+        {
+            var testProd = new ProductDataModel();
+            Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);
         }
         [Fact]
         public void TestRemoveProduct()
         {
-            var testProd = new ProductDataModel {
-                ProductName = "IntelliVue X3",
-                Id = 101,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var testProd = Helper.GetProductDataModelObject(11, "test11");
+            _productManagement.AddProduct(testProd);
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.OK);
-            testProd=new ProductDataModel
-            {
-                ProductName = "IntelliVue X3",
-                Id = -1,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            
+            testProd= new ProductDataModel();
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.BadRequest);
         }
         [Fact]
         public void TestUpdateProduct()
         {
-            var testProd = new ProductDataModel {
-                ProductName = "IntelliVue X3",
-                Id = 101,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
-            Assert.True(_productManagement.UpdateProduct(testProd)== HttpStatusCode.OK);
-            testProd = new ProductDataModel {
-                ProductName = "IntelliVue X3",
-                Id = -1,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = false,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var testProd = Helper.GetProductDataModelObject(12, "test12");
+            _productManagement.AddProduct(testProd);
+            testProd.Portable = false;
+            Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.OK);
+            
+            testProd = new ProductDataModel();
             Assert.True(_productManagement.UpdateProduct(testProd)== HttpStatusCode.BadRequest);
         }
         [Fact]
@@ -114,42 +58,6 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             Assert.True(productList.Any());
         }
 
-        [Fact]
-        public void TestToStringData()
-        {
-            var testProd = new ProductDataModel
-            {
-                ProductName = "IntelliVue X3",
-                Id = 104,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
-            Assert.False(string.IsNullOrEmpty(testProd.ToString()));
-            testProd = new ProductDataModel
-            {
-                ProductName = "",
-                Id = 104,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                ScreenSize = 1000000,
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
-            Assert.True(string.IsNullOrEmpty(testProd.ProductName));
-
-        }
+        
     }
 }

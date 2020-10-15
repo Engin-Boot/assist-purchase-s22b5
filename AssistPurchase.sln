@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{BB2A8F2F-A1A3-4D11-9187-52F39BDB2BBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistPurchaseTest", "AssistPurchaseTest\AssistPurchaseTest.csproj", "{40804FAD-C992-4CBB-9899-15D3D9842184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistPurchaseTest", "AssistPurchaseTest\AssistPurchaseTest.csproj", "{40804FAD-C992-4CBB-9899-15D3D9842184}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

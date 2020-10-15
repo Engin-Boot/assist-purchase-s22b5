@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
+using AssistPurchaseTest.Util;
 using ChatAPI.Controllers;
 using DataAccessLayer;
 using Xunit;
@@ -27,67 +27,27 @@ namespace AssistPurchaseTest.ChatAPITest
         public void TestAddMethod()
         {
             var num = RandomNumberGenerator.GetInt32(100);
-            var testProd=new DataModel.ProductDataModel()
-            {
-                
-                ProductName = "IntelliVue MX"+num,
-                Id = 0,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
         }
         [Fact]
         public void TestRemoveMethod()
         {
-            var testProd = new DataModel.ProductDataModel()
-            {
-                ProductName = "IntelliVue X3",
-                Id = 0,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var num = RandomNumberGenerator.GetInt32(100);
+            var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
             Assert.True(_productController.RemoveProduct(testProd)==HttpStatusCode.OK);
         }
         [Fact]
         public void TestUpdateMethod()
         {
-            var testProd = new DataModel.ProductDataModel()
-            {
-                ProductName = "IntelliVue X3",
-                Id = 0,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
+            var num = RandomNumberGenerator.GetInt32(100);
+            var testProd = Helper.GetProductDataModelObject(num, "Test" + num);
             Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
             testProd.Portable = false;
             Assert.True(_productController.UpdateProduct(testProd)==HttpStatusCode.OK);
         }
+
 
     }
 }

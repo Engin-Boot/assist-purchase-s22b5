@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using DataModel;
+using AssistPurchaseTest.Util;
 using RestSharp;
 using RestSharp.Serialization.Json;
 namespace AssistPurchaseTest.IntegrationTest
@@ -13,28 +14,10 @@ namespace AssistPurchaseTest.IntegrationTest
         public ProductControllerIntegrationTest()
         {
             _restClient = new RestClient("http://localhost:53951/api");
-            _request = new RestRequest("product");
+            _request = new RestRequest("products");
         }
 
-        private ProductDataModel GetProductDataModelObject(int id, string productName)
-        {
-            var testProductDataModel = new ProductDataModel
-            {
-                ProductName = productName,
-                Id = id,
-                ProductSeries = "Intellivue",
-                ProductModel = "X3333",
-                Weight = 1000,
-                Portable = true,
-                MonitorResolution = "1024*720",
-                ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
-            };
-            return testProductDataModel;
-        }
+        
         [Fact]
         public void TestGetData()
         {
@@ -51,7 +34,7 @@ namespace AssistPurchaseTest.IntegrationTest
         [Fact]
         public void IntegrationTest()
         {
-            var testProductDataModel = GetProductDataModelObject(11, "Test2");
+            var testProductDataModel = Helper.GetProductDataModelObject(11, "Test2");
             TestAddData(testProductDataModel);
             TestUpdateData(testProductDataModel);
             TestRemoveData(testProductDataModel);
