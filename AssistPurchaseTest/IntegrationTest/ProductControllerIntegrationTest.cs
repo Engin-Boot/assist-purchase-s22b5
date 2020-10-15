@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
 using DataModel;
 using AssistPurchaseTest.Util;
 using RestSharp;
@@ -34,7 +35,8 @@ namespace AssistPurchaseTest.IntegrationTest
         [Fact]
         public void IntegrationTest()
         {
-            var testProductDataModel = Helper.GetProductDataModelObject(11, "Test2");
+            var num = RandomNumberGenerator.GetInt32(1000) + 10;
+            var testProductDataModel = Helper.GetProductDataModelObject(num, "Test"+num);
             TestAddData(testProductDataModel);
             TestUpdateData(testProductDataModel);
             TestRemoveData(testProductDataModel);

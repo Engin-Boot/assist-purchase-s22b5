@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using DataAccessLayer;
 using AssistPurchaseTest.Util;
 using DataModel;
@@ -21,9 +22,10 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestValidProductDataAddition()
         {
-            var testProd = Helper.GetProductDataModelObject(10,"Test10");
+            var num = RandomNumberGenerator.GetInt32(100) + 10;
+            var testProd = Helper.GetProductDataModelObject(num,"Test"+num);
             Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.OK);
-            
+            //Clean Up
             _productManagement.RemoveProduct(testProd);
         }
         [Fact]
@@ -35,21 +37,28 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestRemoveProduct()
         {
-            var testProd = Helper.GetProductDataModelObject(11, "test11");
+            var num = RandomNumberGenerator.GetInt32(100) + 10;
+            var testProd = Helper.GetProductDataModelObject(num, "test"+num);
+            //Case 1
             _productManagement.AddProduct(testProd);
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.OK);
-            
+            //Case 2
             testProd= new ProductDataModel();
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.BadRequest);
         }
         [Fact]
         public void TestUpdateProduct()
         {
-            var testProd = Helper.GetProductDataModelObject(12, "test12");
+            var num = RandomNumberGenerator.GetInt32(100) + 10;
+            var testProd = Helper.GetProductDataModelObject(num, "test"+num);
+            //Case 1
             _productManagement.AddProduct(testProd);
             testProd.Portable = false;
             Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.OK);
-            
+            //Case 1-Clean Up
+            _productManagement.RemoveProduct(testProd);
+
+            //Case 2
             testProd = new ProductDataModel();
             Assert.True(_productManagement.UpdateProduct(testProd)== HttpStatusCode.BadRequest);
         }

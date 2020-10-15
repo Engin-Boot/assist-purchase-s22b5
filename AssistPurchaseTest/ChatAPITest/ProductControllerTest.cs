@@ -24,10 +24,10 @@ namespace AssistPurchaseTest.ChatAPITest
         [Fact]
         public void TestValidDataAddition()
         {
-            var num = RandomNumberGenerator.GetInt32(100);
+            var num = RandomNumberGenerator.GetInt32(100)+10;
             var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
-
+            //Clean Up
             _productController.RemoveProduct(testProd);
         }
 
@@ -42,7 +42,7 @@ namespace AssistPurchaseTest.ChatAPITest
         [Fact]
         public void TestRemoveMethod()
         {
-            var num = RandomNumberGenerator.GetInt32(100);
+            var num = RandomNumberGenerator.GetInt32(100)+10;
             var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             _productController.AddProduct(testProd);
             
@@ -51,13 +51,13 @@ namespace AssistPurchaseTest.ChatAPITest
         [Fact]
         public void TestUpdateMethod()
         {
-            var num = RandomNumberGenerator.GetInt32(100);
+            var num = RandomNumberGenerator.GetInt32(100)+10;
             var testProd = Helper.GetProductDataModelObject(num, "Test" + num);
             _productController.AddProduct(testProd);
             testProd.Portable = false;
             
             Assert.True(_productController.UpdateProduct(testProd)==HttpStatusCode.OK);
-
+            //Clean Up
             _productController.RemoveProduct(testProd);
         }
     }

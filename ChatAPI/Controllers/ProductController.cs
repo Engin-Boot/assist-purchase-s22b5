@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using DataAccessLayer;
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace ChatAPI.Controllers
             {
                 return Ok(_product.GetAllProducts());
             }
-            catch
+            catch(Exception)
             {
                 return StatusCode(500);
             }
