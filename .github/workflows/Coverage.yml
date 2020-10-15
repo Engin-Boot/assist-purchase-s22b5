@@ -21,7 +21,7 @@ jobs:
         run: dotnet restore
         
       - name: Generate coverage report
-        run: dotnet test --filter "DisplayName!~ProductControllerIntegrationTest&DisplayName!~ChatAppControllerIntegrationTest" --collect:"XPlat Code Coverage"
+        run: dotnet test --filter "DisplayName!~ProductControllerIntegrationTest&DisplayName!~ChatAppControllerIntegrationTest&DisplayName!=Startup&DisplayName!=Program" --collect:"XPlat Code Coverage"
       
       - name: Check AssistPurchase Coverage
         run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project AssistPurchaseTest

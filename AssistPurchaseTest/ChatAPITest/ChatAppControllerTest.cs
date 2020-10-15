@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using ChatAPI;
 using ChatAPI.Controllers;
 using ChatAPI.Utils;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace AssistPurchaseTest.ChatAPITest
@@ -82,7 +85,5 @@ namespace AssistPurchaseTest.ChatAPITest
             Assert.NotNull(responseObject);
             Assert.Equal(200, responseObject.StatusCode);
         }
-
-
     }
 }
