@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChatAPI.Controllers
 {
-    [Route("api/product")]
+    [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -15,7 +15,6 @@ namespace ChatAPI.Controllers
             _product = product;
            
         }
-        // GET: api/product
         [HttpGet]
         public IActionResult Get()
         {

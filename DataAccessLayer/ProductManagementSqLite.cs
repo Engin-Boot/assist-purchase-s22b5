@@ -7,10 +7,10 @@ using DataModel;
 
 namespace DataAccessLayer
 {
-    public class ProjectManagementSqLite: IProductManagement
+    public class ProductManagementSqLite: IProductManagement
     {
         private readonly SQLiteConnection _con;
-        public ProjectManagementSqLite()
+        public ProductManagementSqLite()
         {
             var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
 
