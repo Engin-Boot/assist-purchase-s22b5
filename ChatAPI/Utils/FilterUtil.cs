@@ -72,7 +72,7 @@ namespace ChatAPI.Utils
         private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
             IEnumerable<ProductDataModel> productList)
         {
-            if (minWeight < 0 || maxWeight <= minWeight) return productList;
+            if (!IsMinAndMaxValueValid(minWeight,maxWeight)) return productList;
             
             var filteredList = new List<ProductDataModel>();
             
@@ -89,7 +89,7 @@ namespace ChatAPI.Utils
         private static IEnumerable<ProductDataModel> FilterByScreenSize(double minScreenSize, double maxScreenSize,
             IEnumerable<ProductDataModel> productList)
         {
-            if (minScreenSize <= 0 || maxScreenSize <= minScreenSize) return productList;
+            if (!IsMinAndMaxValueValid(minScreenSize,maxScreenSize)) return productList;
             
             var filteredList = new List<ProductDataModel>();
             
@@ -102,6 +102,12 @@ namespace ChatAPI.Utils
             }
 
             return filteredList;
+        }
+
+        private static bool IsMinAndMaxValueValid(double minvalue, double maxValue)
+        {
+            if (minvalue <= 0 || maxValue <= minvalue) return false;
+            return true;
         }
 
         
