@@ -10,13 +10,6 @@ namespace DataAccessLayer
     public class ProductManagementSqLite: IProductManagement
     {
         
-        /*public ProductManagementSqLite()
-        {
-            *//*var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
-
-            _con = new SQLiteConnection(cs);*//*
-        }*/
-
         public HttpStatusCode AddProduct(ProductDataModel product)  
         {
             var con = GetConnection();
@@ -112,6 +105,7 @@ namespace DataAccessLayer
 
         public IEnumerable<ProductDataModel> GetAllProducts()
         {
+
             var con = GetConnection();
                 con.Open();
             var list = new List<ProductDataModel>();
@@ -171,9 +165,10 @@ namespace DataAccessLayer
 
         private static SQLiteConnection GetConnection()
         {
-            var cs = $@"URI=file:{Directory.GetCurrentDirectory()}\AssistPurchase.db";
-            var con = new SQLiteConnection(cs);
-            return con;
+            var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                var cs = $@"URI=file:{Path.GetFullPath(Path.Combine(path!, @"..\..\..\"))}AssistPurchase.db";
+                var con = new SQLiteConnection(cs);
+                return con;
         }
     }
 }
