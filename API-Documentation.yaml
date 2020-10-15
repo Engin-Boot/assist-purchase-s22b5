@@ -1,0 +1,207 @@
+swagger: "2.0"
+info:
+  description: "Philips offers monitoring solutions. \nThis project assists in selecting and delivering the right solution. It serves both the customer as well as Philips personnel.\nYou can check out the repository here: [Repository](https://github.com/Engin-Boot/assist-purchase-s22b5)"
+  version: "1.0.0"
+  title: "Asssist Purchase"
+host: "localhost:53951"
+basePath: "/api/"
+
+schemes:
+- "http"
+
+paths:
+  /products/:
+    post:
+      tags:
+      - "Monitoring Products"
+      summary: "Adds a new product to DB"
+      description: ""
+      operationId: "addProduct"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product entered to store in Db"
+        required: true
+        schema:
+          $ref: "#/definitions/Add"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Add"
+        "500":
+          description: "Empty productName / Product Already in Db"
+    get:
+      tags:
+      - "Monitoring Products"
+      summary: "Get All the Product from Db"
+      description: "This will fetch all the products from the DB that can be used for displaying Monitoring product details in the WebPage"
+      operationId: "getAll"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Successful operation return list of Monitoring Products"
+          schema:
+            $ref: "#/definitions/Add"
+        "500":
+          description: "If the DB is down"
+    delete:
+      tags:
+      - "Monitoring Products"
+      summary: "Delete product from DB"
+      description: "Deletes the product from the DB.\nTakes Product Data Model from body and deletes based on the product ID."
+      operationId: "deleteOrder"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product to be deleted from Db"
+        required: true
+        schema:
+          $ref: "#/definitions/Add"
+      responses:
+        "200":
+          description: "Product Deleted successfully"
+        "400":
+          description: "Product ID not found in DB"
+        "500":
+          description: "SQL Exception / Wrong Data provided"
+    put:
+      tags:
+      - "Monitoring Products"
+      summary: "Updates product in the DB"
+      description: "Updates the product from the DB.\nTakes Product Data Model from body and deletes based on the product ID and Adds new Product with the updates."
+      operationId: "updateOrder"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product to be updated from Db"
+        required: true
+        schema:
+          $ref: "#/definitions/Add"
+      responses:
+        "200":
+          description: "Product Updated successfully"
+        "500":
+          description: "SQL Exception / Wrong Data provided"
+
+  /chat-api/:
+    post:
+      tags:
+      - "ChatAPP"
+      summary: "Sends an email to Sales Team"
+      description: "Sends an email to the sales team based on the product selected by customer"
+      operationId: "send"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product entered to store in Db"
+        required: true
+        schema:
+          $ref: "#/definitions/Mailer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Mailer"
+        "400":
+          description: "SMTP Exception: Not correct email credentials"
+        "500":
+          description: "Internal Server Error"
+    get:
+      tags:
+      - "ChatAPP"
+      summary: "Filter product from DB"
+      description: "Filter product from DB based on user's choice"
+      operationId: "filter"
+      produces:
+      - "application/json"
+      parameters:
+        - in: query
+          name: minWeight
+          type: number
+          description: "The minimin weight filter"
+        - in: query
+          name: maxWeight
+          type: number
+          description: "The maximum weight filter"
+        - in: query
+          name: isPortable
+          type: boolean
+          description: "To filter the portable monitors"
+        - in: query
+          name: measurements
+          type: string
+          description: "Array of measurements"
+        - in: query
+          name: minScreenSize
+          type: number
+          description: "The minimin Screen size filter"
+        - in: query
+          name: maxScreenSize
+          type: number
+          description: "The maximum Screen size filter"
+      responses:
+        "200":
+          description: "Successful operation will return list of filtered products"
+          schema:
+            $ref: "#/definitions/Add"
+        "500":
+          description: "Internal Server Error / DB Error"
+          
+definitions:
+  Add:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      productName:
+        type: "string"
+        format: "string"
+      productSeries:
+        type: "string"
+        format: "string"
+      productModel:
+        type: "string"
+        format: "string"
+      screenSize:
+        type: "number"
+        description: "Monitor Screen size"
+        format: "double"
+      weight:
+        type: "number"
+        description: "Weight of Monitoring Product"
+        format: "double"
+      portable:
+        type: "boolean"
+        default: false
+      monitorResolution:
+        type: "string"
+        format: "string"
+      measurements:
+        type: "array"
+        items:
+          type: "string"
+  Mailer:
+    properties:
+      productNameList:
+        type: "array"
+        items:
+          type: "string"
+      customerEmailId:
+        type: "string"
+        format: "string"
+        
+externalDocs:
+  description: "Philips Monitoring Solutions"
+  url: "https://www.philips.co.in/healthcare/solutions/patient-monitoring/continuous-patient-monitoring-systems"
+  
