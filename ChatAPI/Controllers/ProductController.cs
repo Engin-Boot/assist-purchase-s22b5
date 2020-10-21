@@ -2,10 +2,13 @@
 using System.Net;
 using DataAccessLayer;
 using DataModel;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ChatAPI.Controllers
 {
+    [EnableCors()]
     [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
