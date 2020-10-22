@@ -11,8 +11,14 @@ public getList():Observable<any>{
 return this.http.get("http://localhost:53951/api/products/");
 }
 
+
  public submitList(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 return this.http.post<any>("http://localhost:53951/api/Signup/",data,httpOptions);
+}
+
+public submitList2(data):Observable<any>{
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+return this.http.post<any>("http://localhost:53951/api/Signup/validate",data,httpOptions);
 }
 }
