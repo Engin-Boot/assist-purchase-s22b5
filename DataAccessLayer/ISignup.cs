@@ -10,5 +10,6 @@ namespace DataAccessLayer
     public interface ISignup
     {
        public HttpStatusCode RegisterUser(DataModel.UserData userData);
+        public bool ValidateUser(DataModel.UserData user);
     }
 }

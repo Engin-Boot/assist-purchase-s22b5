@@ -25,6 +25,37 @@ namespace DataAccessLayer
             cmd.ExecuteNonQuery();
             return HttpStatusCode.OK;
         }
+        public bool ValidateUser(UserData user)
+        {
+            var con = GetConnection();
+            con.Open();
+            string stm = "SELECT * FROM Signup";
+
+            using var cmd = new SQLiteCommand(stm, con);
+            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            List<UserData> registeredusers = new List<UserData>();
+            var flag = false;
+            while (rdr.Read())
+            {
+                UserData registereduser = new UserData
+                {
+                    Email = rdr.GetString(0),
+                    Password = rdr.GetString(1),
+                    RepeatPassword = rdr.GetString(2),
+                };
+                registeredusers.Add(registereduser);
+            }
+            foreach(var item in registeredusers)
+            {
+                if (item.Email == user.Email && item.Password == user.Password)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+
+            return flag;
+        }
         private static SQLiteConnection GetConnection()
         {
             var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);

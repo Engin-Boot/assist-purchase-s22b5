@@ -20,11 +20,18 @@ namespace ChatAPI.Controllers
             signup = repo;
         }
 
+        [HttpPost("validate")]
+        public string Validate([FromBody] DataModel.UserData value)
+        {
+           var res = signup.ValidateUser(value);
+            return "valid credentials : " + res.ToString();
+        }
         // POST api/<SignupController>
         [HttpPost]
         public void Post([FromBody] DataModel.UserData value)
         {
             signup.RegisterUser(value);
         }
+
     }
 }
