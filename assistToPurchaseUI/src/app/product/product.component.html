@@ -1,0 +1,50 @@
+<h1>Assist Purchase Portal</h1>
+<h2>   Available Products</h2>
+<head>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+  padding: 15px;
+}
+
+ 
+
+  </style>
+  </head>
+<body>
+<table style="width:10%">
+  <tr>
+    <th>ProductName</th>
+    <th>Id</th> 
+    <th>ProductSeries</th>
+    <th>ProductModel</th>
+    <th>ScreenSize</th> 
+    <th>Weight</th>
+    <th>Portable</th>
+    <th>MonitorResolution</th> 
+    <th>Measurement</th>
+  </tr>
+<tr *ngFor="let prods of list">
+
+ 
+
+
+  <td>{{prods.productName }}</td>
+  <td>{{prods.id}}</td>
+  <td>{{prods.productSeries}}</td> 
+  <td>{{prods.productModel}}</td>
+  <td>{{prods.screenSize}}</td>
+  <td>{{prods.weight}}</td>
+  <td>{{prods.portable}}</td>
+  <td>{{prods.monitorResolution}}</td>
+  <td>{{prods.measurement}}</td>
+
+ 
+
+
+</tr>
+</table>
+<button (click)="onSubmit()">Back</button>

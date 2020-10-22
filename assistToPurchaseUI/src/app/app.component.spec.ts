@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'assistToPurchaseUI'`, () => {
+  it(`should have as title 'AssistPurchaseGUI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('assistToPurchaseUI');
+    expect(app.title).toEqual('AssistPurchaseGUI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('assistToPurchaseUI app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('AssistPurchaseGUI app is running!');
   });
 });
