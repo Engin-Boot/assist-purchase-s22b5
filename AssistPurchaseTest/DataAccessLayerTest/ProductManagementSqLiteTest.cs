@@ -33,7 +33,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         public void TestInvalidProductDataAddition()
         {
             Thread.Sleep(100);
-            var testProd = new ProductDataModel();
+            var testProd = new ProductInfo();
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);
         }
 

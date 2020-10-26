@@ -7,9 +7,9 @@ namespace AssistPurchaseTest.Util
     [ExcludeFromCodeCoverage]
     public static class Helper
     {
-        public static ProductDataModel GetProductDataModelObject(int id, string productName)
+        public static ProductInfo GetProductDataModelObject(int id, string productName)
         {
-            var testProductDataModel = new ProductDataModel
+            var testProductDataModel = new ProductInfo
             {
                 ProductName = productName,
                 Id = id,
@@ -19,10 +19,7 @@ namespace AssistPurchaseTest.Util
                 Portable = true,
                 MonitorResolution = "1024*720",
                 ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
+                Measurement = "SPO2,ECG"
             };
             return testProductDataModel;
         }

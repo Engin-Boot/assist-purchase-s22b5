@@ -10,7 +10,7 @@ namespace DataAccessLayer
     public class ProductManagementSqLite: IProductManagement
     {
         
-        public HttpStatusCode AddProduct(ProductDataModel product)  
+        public HttpStatusCode AddProduct(ProductInfo product)  
         {
             var con = GetConnection();
             try
@@ -25,9 +25,9 @@ namespace DataAccessLayer
                 var cmd = new SQLiteCommand(con)
                 {
                     CommandText =
-                        @"INSERT INTO MonitoringProducts(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution) 
+                        @"INSERT INTO MonitoringProduct(id, productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution,measurements) 
                                     VALUES
-                                    (@id, @productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution)"
+                                    (@id, @productName, @productSeries, @productModel, @screenSize, @productWeight, @portable, @monitorResolution,@measurements)"
                 };
 
                 cmd.Parameters.AddWithValue("@id", product.Id);
@@ -38,11 +38,12 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@productWeight", product.Weight);
                 cmd.Parameters.AddWithValue("@portable", product.Portable);
                 cmd.Parameters.AddWithValue("@monitorResolution", product.MonitorResolution);
+                cmd.Parameters.AddWithValue("@measurements", product.Measurement);
                 cmd.Prepare();
 
                 cmd.ExecuteNonQuery();
 
-                foreach (var newMeasurement in product.Measurement)
+              /*  foreach (var newMeasurement in product.Measurement)
                 {
                     cmd.CommandText = @"INSERT INTO MonitoringMeasurements( productName, measurements) 
                                         VALUES
@@ -53,7 +54,7 @@ namespace DataAccessLayer
 
                     cmd.ExecuteNonQuery();
 
-                }
+                }*/
 
             }
             catch (Exception)
@@ -68,7 +69,7 @@ namespace DataAccessLayer
             return HttpStatusCode.OK;
         }
 
-        public HttpStatusCode RemoveProduct(ProductDataModel product)
+        public HttpStatusCode RemoveProduct(ProductInfo product)
         {
             var con = GetConnection();
             try
@@ -77,7 +78,7 @@ namespace DataAccessLayer
                 con.Open();
                 var cmd = new SQLiteCommand(con)
                 {
-                    CommandText = $@"DELETE FROM MonitoringProducts WHERE id='{product.Id}'"
+                    CommandText = $@"DELETE FROM MonitoringProduct WHERE id='{product.Id}'"
                 };
                 var rows=cmd.ExecuteNonQuery();
                 if (rows == 0)
@@ -85,8 +86,8 @@ namespace DataAccessLayer
                     return HttpStatusCode.BadRequest;
                 }
 
-                cmd.CommandText = $@"DELETE FROM MonitoringMeasurements WHERE productName='{product.ProductName}'";
-                cmd.ExecuteNonQuery();
+               /* cmd.CommandText = $@"DELETE FROM MonitoringMeasurements WHERE productName='{product.ProductName}'";
+                cmd.ExecuteNonQuery();*/
 
 
             }
@@ -103,16 +104,15 @@ namespace DataAccessLayer
         }
 
 
-        public IEnumerable<ProductDataModel> GetAllProducts()
+        public IEnumerable<ProductInfo> GetAllProducts()
         {
 
             var con = GetConnection();
                 con.Open();
-            var list = new List<ProductDataModel>();
+            List<ProductInfo> list = new List<ProductInfo>();
 
 
-            var stm = @"SELECT p.id, p.productName, productSeries, productModel, screenSize, productWeight, portable, monitorResolution 
-                        FROM MonitoringProducts p";
+            var stm = @"SELECT * FROM MonitoringProduct ";
             using var cmd1 = new SQLiteCommand(stm, con);
             using var rdr = cmd1.ExecuteReader();
 
@@ -121,7 +121,7 @@ namespace DataAccessLayer
 
             while (rdr.Read())
             {
-                var stm2 = @"SELECT productName, measurements 
+               /* var stm2 = @"SELECT productName, measurements 
                          FROM MonitoringMeasurements";
                 using var cmd2 = new SQLiteCommand(stm2, con);
                 using var rdr2 = cmd2.ExecuteReader();
@@ -134,8 +134,8 @@ namespace DataAccessLayer
                     {
                         measurements.Add(rdr2.GetString(1));
                     }
-                }
-                list.Add(new ProductDataModel()
+                }*/
+                ProductInfo productInfo=new ProductInfo
                 {
                     Id = rdr.GetInt32(0),
                     ProductName = rdr.GetString(1),
@@ -145,14 +145,15 @@ namespace DataAccessLayer
                     Weight = rdr.GetDouble(5),
                     Portable = rdr.GetBoolean(6),
                     MonitorResolution = rdr.GetString(7),
-                    Measurement = measurements
-                });
+                    Measurement = rdr.GetString(8)
+                };
+                list.Add(productInfo);
             }
             con.Close();
             return list;
         }
 
-        public HttpStatusCode UpdateProduct(ProductDataModel product)
+        public HttpStatusCode UpdateProduct(ProductInfo product)
         {
             
             var removeStatusCode=RemoveProduct(product); 
@@ -170,5 +171,7 @@ namespace DataAccessLayer
                 var con = new SQLiteConnection(cs);
                 return con;
         }
+
+        
     }
 }

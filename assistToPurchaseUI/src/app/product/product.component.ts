@@ -37,5 +37,11 @@ export class ProductComponent implements OnInit {
     
   this.router.navigate(['./home'])
 }
+onSubmit2(){
+  this.router.navigate(['./addproduct'])
+}
+onSubmit3(){
+  this.router.navigate(['./updateproduct'])
+}
 
 }

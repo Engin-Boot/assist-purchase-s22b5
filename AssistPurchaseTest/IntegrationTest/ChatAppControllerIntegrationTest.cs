@@ -23,7 +23,7 @@ namespace AssistPurchaseTest.IntegrationTest
         {
             _request.AddQueryParameter("IsPortable", "true");
             var response = _restClient.Get(_request);
-            var output = _deserializer.Deserialize<List<ProductDataModel>>(response);
+            var output = _deserializer.Deserialize<List<ProductInfo>>(response);
             Assert.NotNull(output);
         }
 
@@ -31,9 +31,9 @@ namespace AssistPurchaseTest.IntegrationTest
         public void TestMeasurementFilter()
         {
             _request.AddQueryParameter("Measurements", "SPO2");
-            _request.AddQueryParameter("Measurements", "ECG");
+            //_request.AddQueryParameter("Measurements", "ECG");
             var response = _restClient.Get(_request);
-            var output = _deserializer.Deserialize<List<ProductDataModel>>(response);
+            var output = _deserializer.Deserialize<List<ProductInfo>>(response);
             Assert.NotNull(output);
         }
 
@@ -43,7 +43,7 @@ namespace AssistPurchaseTest.IntegrationTest
             _request.AddQueryParameter("MinScreenSize", "5");
             _request.AddQueryParameter("MaxScreenSize", "10");
             var response = _restClient.Get(_request);
-            var output = _deserializer.Deserialize<List<ProductDataModel>>(response);
+            var output = _deserializer.Deserialize<List<ProductInfo>>(response);
             Assert.NotNull(output);
         }
     }

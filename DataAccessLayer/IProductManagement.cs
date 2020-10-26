@@ -5,9 +5,9 @@ namespace DataAccessLayer
 {
     public interface IProductManagement
     {
-        HttpStatusCode AddProduct(DataModel.ProductDataModel product);
-        HttpStatusCode RemoveProduct(DataModel.ProductDataModel product);
-        IEnumerable<DataModel.ProductDataModel> GetAllProducts();
-        HttpStatusCode UpdateProduct(DataModel.ProductDataModel product);
+        HttpStatusCode AddProduct(DataModel.ProductInfo product);
+        HttpStatusCode RemoveProduct(DataModel.ProductInfo product);
+        IEnumerable<DataModel.ProductInfo> GetAllProducts();
+        HttpStatusCode UpdateProduct(DataModel.ProductInfo product);
     }
 }

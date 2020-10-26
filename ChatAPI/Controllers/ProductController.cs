@@ -33,19 +33,19 @@ namespace ChatAPI.Controllers
             
         }
         [HttpPost]
-        public HttpStatusCode AddProduct([FromBody] ProductDataModel product)
+        public HttpStatusCode AddProduct([FromBody] ProductInfo product)
         {
             return _product.AddProduct(product);
         }
 
         [HttpPut]
-        public HttpStatusCode UpdateProduct([FromBody] ProductDataModel product)
+        public HttpStatusCode UpdateProduct([FromBody] ProductInfo product)
         {
             return _product.UpdateProduct(product);
         }
 
         [HttpDelete]
-        public HttpStatusCode RemoveProduct([FromBody] ProductDataModel product)
+        public HttpStatusCode RemoveProduct([FromBody] ProductInfo product)
         {
             return _product.RemoveProduct(product);
         }

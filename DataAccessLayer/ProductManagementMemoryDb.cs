@@ -7,11 +7,11 @@ namespace DataAccessLayer
 {
     public class ProductManagementMemoryDb:IProductManagement
     {
-        private static readonly List<ProductDataModel> Db=new List<ProductDataModel>();
+        private static readonly List<ProductInfo> Db=new List<ProductInfo>();
 
         public ProductManagementMemoryDb()
         {
-            Db.Add(new ProductDataModel
+            Db.Add(new ProductInfo
             { 
                 ProductName = "IntelliVue X3",
                 Id = 101,
@@ -21,12 +21,10 @@ namespace DataAccessLayer
                 Portable = true,
                 MonitorResolution = "1024*720",
                 ScreenSize = 5,
-                Measurement = new List<string>()
-                {
-                    "SPO2", "ECG"
-                }
+                Measurement = "SPO2,ECG"
+                
             });
-            Db.Add(new ProductDataModel
+            Db.Add(new ProductInfo
             {
                 ProductName = "IntelliVue MX40",
                 Id = 102,
@@ -36,13 +34,11 @@ namespace DataAccessLayer
                 Portable = true,
                 MonitorResolution = "1024*920",
                 ScreenSize = 15,
-                Measurement = new List<string>()
-                {
-                    "SPO2"
-                }
+                Measurement = "SPO2"
+                
             });
 
-            Db.Add(new ProductDataModel
+            Db.Add(new ProductInfo
             {
                 ProductName = "IntelliVue MX750",
                 Id = 103,
@@ -52,10 +48,10 @@ namespace DataAccessLayer
                 Portable = false,
                 MonitorResolution = "1024*1020",
                 ScreenSize = 29,
-                Measurement = new List<string>()
+                Measurement =""
             });
         }
-        public HttpStatusCode AddProduct(ProductDataModel product)
+        public HttpStatusCode AddProduct(ProductInfo product)
         {
             product.Id = 0;
                 if (string.IsNullOrEmpty(product.ProductName))
@@ -73,7 +69,7 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public HttpStatusCode RemoveProduct(ProductDataModel product)
+        public HttpStatusCode RemoveProduct(ProductInfo product)
         {
             
             foreach (var products in Db.Where(products => products.Id == product.Id))
@@ -85,13 +81,13 @@ namespace DataAccessLayer
             return HttpStatusCode.BadRequest;
         }
 
-        public IEnumerable<ProductDataModel> GetAllProducts()
+        public IEnumerable<ProductInfo> GetAllProducts()
         {
           
             return Db;
         }
 
-        public HttpStatusCode UpdateProduct(ProductDataModel product)
+        public HttpStatusCode UpdateProduct(ProductInfo product)
         {
             for (var index = 0; index < Db.Count; index++) 
             {
@@ -102,5 +98,9 @@ namespace DataAccessLayer
             }
             return HttpStatusCode.BadRequest;
         }
+
+        
+
+        
     }
 }

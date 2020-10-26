@@ -25,7 +25,7 @@ namespace AssistPurchaseTest.IntegrationTest
             
             var data = _restClient.Get(_request);
             var deserialize = new JsonDeserializer();
-            var output = deserialize.Deserialize<List<ProductDataModel>>(data);
+            var output = deserialize.Deserialize<List<ProductInfo>>(data);
 
             Assert.True(output[0].Id == 1);
             Assert.True(output[1].Id == 2);
@@ -41,7 +41,7 @@ namespace AssistPurchaseTest.IntegrationTest
             TestUpdateData(testProductDataModel);
             TestRemoveData(testProductDataModel);
         }
-        private void TestAddData(ProductDataModel testProductDataModel)
+        private void TestAddData(ProductInfo testProductDataModel)
         {
            
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
@@ -55,7 +55,7 @@ namespace AssistPurchaseTest.IntegrationTest
 
         }
         
-        private void TestRemoveData(ProductDataModel testProductDataModel)
+        private void TestRemoveData(ProductInfo testProductDataModel)
         {
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
             _request.AddJsonBody(testProductDataModel);
@@ -68,7 +68,7 @@ namespace AssistPurchaseTest.IntegrationTest
 
         }
 
-        private void TestUpdateData(ProductDataModel testProductDataModel)
+        private void TestUpdateData(ProductInfo testProductDataModel)
         {
             testProductDataModel.Weight = 900;
             _request.AddHeader("Content-Type", "application/json; charset=utf-8");
@@ -80,6 +80,6 @@ namespace AssistPurchaseTest.IntegrationTest
 
             Assert.Equal(HttpStatusCode.OK, output);
         }
-
+       
     }
 }

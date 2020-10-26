@@ -31,7 +31,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         [Fact]
         public void TestInvalidProductDataAddition()
         {
-            var testProd = new ProductDataModel();
+            var testProd = new ProductInfo();
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.BadRequest);
         }
         [Fact]
@@ -43,7 +43,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             _productManagement.AddProduct(testProd);
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.OK);
             //Case 2
-            testProd= new ProductDataModel();
+            testProd= new ProductInfo();
             Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.BadRequest);
         }
         [Fact]
@@ -59,7 +59,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             _productManagement.RemoveProduct(testProd);
 
             //Case 2
-            testProd = new ProductDataModel();
+            testProd = new ProductInfo();
             Assert.True(_productManagement.UpdateProduct(testProd)== HttpStatusCode.BadRequest);
         }
         [Fact]

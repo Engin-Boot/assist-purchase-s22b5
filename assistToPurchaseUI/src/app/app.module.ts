@@ -9,13 +9,17 @@ import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './service/signup.service';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { UpdateproductComponent } from './updateproduct/updateproduct.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupuserComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    AddproductComponent,
+    UpdateproductComponent
   ],
   imports: [
     BrowserModule,

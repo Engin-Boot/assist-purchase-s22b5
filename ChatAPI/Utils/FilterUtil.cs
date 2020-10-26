@@ -13,13 +13,13 @@ namespace ChatAPI.Utils
             _productDb = productDb;
         }
 
-        public IEnumerable<ProductDataModel> ProductFilter(Filter filtersList)
+        public IEnumerable<ProductInfo> ProductFilter(Filter filtersList)
         {
             var products = _productDb.GetAllProducts();
 
             var filteredProducts = FilterByPortability(filtersList.IsPortable, products);
 
-            filteredProducts = FilterByMeasurements(filtersList.Measurements, filteredProducts);
+            //filteredProducts = FilterByMeasurements(filtersList.Measurements, filteredProducts);
 
             filteredProducts = FilterByWeight(filtersList.MinWeight, filtersList.MaxWeight, filteredProducts);
 
@@ -28,13 +28,13 @@ namespace ChatAPI.Utils
             return filteredProducts;
         }
 
-        private static IEnumerable<ProductDataModel> FilterByPortability(string isPortable, IEnumerable<ProductDataModel> productList)
+        private static IEnumerable<ProductInfo> FilterByPortability(string isPortable, IEnumerable<ProductInfo> productList)
         {
             if (string.IsNullOrEmpty(isPortable)) return productList;
             
             var searchCriteria = bool.Parse(isPortable);
 
-            var filteredList = new List<ProductDataModel>();
+            var filteredList = new List<ProductInfo>();
 
             foreach (var product in productList)
             {
@@ -45,7 +45,7 @@ namespace ChatAPI.Utils
             }
             return filteredList;  
         }
-        private static IEnumerable<ProductDataModel> FilterByMeasurements(List<string> measurements, IEnumerable<ProductDataModel> productList)
+       private static IEnumerable<ProductDataModel> FilterByMeasurements(List<string> measurements, IEnumerable<ProductDataModel> productList)
         {
             if (measurements == null) return productList;
 
@@ -68,12 +68,12 @@ namespace ChatAPI.Utils
             return filteredList;
         }
 
-        private static IEnumerable<ProductDataModel> FilterByWeight(double minWeight, double maxWeight,
-            IEnumerable<ProductDataModel> productList)
+        private static IEnumerable<ProductInfo> FilterByWeight(double minWeight, double maxWeight,
+            IEnumerable<ProductInfo> productList)
         {
             if (!IsMinAndMaxValueValid(minWeight,maxWeight)) return productList;
             
-            var filteredList = new List<ProductDataModel>();
+            var filteredList = new List<ProductInfo>();
             
             foreach (var product in productList)
             {
@@ -85,12 +85,12 @@ namespace ChatAPI.Utils
             return filteredList;
         }
 
-        private static IEnumerable<ProductDataModel> FilterByScreenSize(double minScreenSize, double maxScreenSize,
-            IEnumerable<ProductDataModel> productList)
+        private static IEnumerable<ProductInfo> FilterByScreenSize(double minScreenSize, double maxScreenSize,
+            IEnumerable<ProductInfo> productList)
         {
             if (!IsMinAndMaxValueValid(minScreenSize,maxScreenSize)) return productList;
             
-            var filteredList = new List<ProductDataModel>();
+            var filteredList = new List<ProductInfo>();
             
             foreach (var product in productList)
             {

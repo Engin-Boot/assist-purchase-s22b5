@@ -16,6 +16,15 @@ return this.http.get("http://localhost:53951/api/products/");
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 return this.http.post<any>("http://localhost:53951/api/Signup/",data,httpOptions);
 }
+public addProduct(data):Observable<any>{
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+return this.http.post<any>("http://localhost:53951/api/products/",data,httpOptions);
+}
+
+public updateProduct(data):Observable<any>{
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+return this.http.put<any>("http://localhost:53951/api/products/",data,httpOptions);
+}
 
 public submitList2(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
