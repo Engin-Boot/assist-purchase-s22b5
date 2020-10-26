@@ -38,7 +38,7 @@ namespace AssistPurchaseTest.ChatAPITest
             };
             var response = _chatAppController.FilterProducts(dummyFilter);
             var responseObject = response as OkObjectResult;
-            Assert.Null(responseObject);
+            //Assert.NotNull(responseObject);
             Assert.Equal(200, responseObject.StatusCode);
         }
 
