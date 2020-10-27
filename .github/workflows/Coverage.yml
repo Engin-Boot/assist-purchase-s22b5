@@ -24,4 +24,4 @@ jobs:
         run: dotnet test --filter "DisplayName!~ProductControllerIntegrationTest&DisplayName!~ChatAppControllerIntegrationTest" --collect:"XPlat Code Coverage"
       
       - name: Check AssistPurchase Coverage
-        run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.9 -project AssistPurchaseTest
+        run: powershell ./PowershellScripts/Coverage.ps1 -linerate 0.8 -project AssistPurchaseTest
