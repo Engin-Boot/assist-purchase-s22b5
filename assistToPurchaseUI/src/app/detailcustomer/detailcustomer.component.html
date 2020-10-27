@@ -88,10 +88,14 @@ button:hover {
     <input type="text" formControlName="phonenumber" placeholder="Enter Phone Number" name="phonenumber" required>
  
     <div class="clearfix">
+      
       <button type="submit " class="signupbtn">Submit</button>
+      <button (click)="onSubmit2()" class="signupbtn">Cancel</button>
+      <output> {{errorMessage}}</output> 
     </div>
   </div>
 </form>
+
 <!-- <router-outlet></router-outlet> -->
 </body>
 </html>

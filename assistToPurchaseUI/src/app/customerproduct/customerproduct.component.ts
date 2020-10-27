@@ -34,5 +34,8 @@ export class CustomerproductComponent implements OnInit {
 onSubmit2(){
   this.router.navigate(['./filter'])
 }
+onSubmit3(){
+  this.router.navigate(['./firstpage'])
+}
 
 }

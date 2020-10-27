@@ -79,7 +79,9 @@ onSubmit4(){
   this.fetchList4();
 this.router.navigate(['./filter'])
 }
-
+onSubmit5(){
+  this.router.navigate(['./customerproduct'])
+}
 }
 
 

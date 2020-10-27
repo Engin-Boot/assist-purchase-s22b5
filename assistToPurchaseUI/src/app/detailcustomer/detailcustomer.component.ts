@@ -11,6 +11,7 @@ import { SignupService } from '../service/signup.service';
 export class DetailcustomerComponent implements OnInit {
   title = 'AssistPurchase';
   list=[];
+  errorMessage=""
   referenceForm: FormGroup;
   //[{"id":"MRN001","name":"Tom","password":"Tom123","email":"Tom@gmail.com"},{"id":"MRN002","name":"Hary","password":"Harry123","email":"Harry@gmail.com"}];
   constructor(@Inject("logger") loggerService:any,private panservice:SignupService,private router:Router) { }
@@ -43,7 +44,11 @@ this.panservice.submitList4(this.referenceForm.value).subscribe((result)=>{
  
 },error=>{
   });
-  this.router.navigate(['./home'])
+  this.errorMessage="Interest Submitted Successfully";
+  this.router.navigate(['./detailcustomer'])
+}
+onSubmit2(){
+  this.router.navigate(['./customerproduct'])
 }
 
 }
