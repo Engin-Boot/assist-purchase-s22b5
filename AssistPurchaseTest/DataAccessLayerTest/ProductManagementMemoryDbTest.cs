@@ -5,6 +5,8 @@ using DataAccessLayer;
 using AssistPurchaseTest.Util;
 using DataModel;
 using Xunit;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace AssistPurchaseTest.DataAccessLayerTest
 {
@@ -69,6 +71,37 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             Assert.True(productList.Any());
         }
 
-        
+        [Fact]
+        public void TestProductModelData()
+        {
+            Thread.Sleep(100);
+            ProductDataModel testProductDataModel = new ProductDataModel
+            {
+                ProductName = "productName",
+                Id = 1,
+                ProductSeries = "Intellivue",
+                ProductModel = "X33",
+                Weight = 1000,
+                Portable = true,
+                MonitorResolution = "1024*720",
+                ScreenSize = 5,
+                Measurement = new List<string>()
+                {
+                    "SPO2", "ECG"
+                }
+            };
+            Assert.Equal("productName", testProductDataModel.ProductName);
+            Assert.Equal(1, testProductDataModel.Id);
+            Assert.Equal("Intellivue", testProductDataModel.ProductSeries);
+            Assert.Equal("X33", testProductDataModel.ProductModel);
+            Assert.Equal(1000, testProductDataModel.Weight);
+            Assert.True(testProductDataModel.Portable);
+            Assert.Equal("1024*720", testProductDataModel.MonitorResolution);
+            Assert.Equal(5, testProductDataModel.ScreenSize);
+            Assert.NotNull(testProductDataModel.Measurement);
+            
+        }
+
+
     }
 }

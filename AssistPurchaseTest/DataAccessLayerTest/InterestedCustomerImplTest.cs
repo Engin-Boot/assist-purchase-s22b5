@@ -16,6 +16,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
     {
         private readonly IInterestedCustomer _interestedCustomer;
 
+
         public InterestedCustomerImplTest()
         {
             _interestedCustomer = new InterestedCustomerImpl();
@@ -39,6 +40,20 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             };
             Assert.True(_interestedCustomer.InterestedCustomer(customer) == System.Net.HttpStatusCode.OK);
         }
-      
-    }
+
+        [Fact]
+        public void TestCustomerData()
+        {
+            Thread.Sleep(100);
+            CustomerDetails customer = new CustomerDetails
+            {
+                ProductName = "x0",
+                Email = "pranshu123@gmail.com",
+                PhoneNumber = "0987654322"
+            };
+            Assert.Equal("x0", customer.ProductName);
+            Assert.Equal("pranshu123@gmail.com", customer.Email);
+            Assert.Equal("0987654322", customer.PhoneNumber);
+        }
+        }
 }

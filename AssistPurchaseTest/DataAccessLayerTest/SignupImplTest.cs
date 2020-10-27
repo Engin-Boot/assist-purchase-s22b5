@@ -47,5 +47,19 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             Assert.IsType<bool>(res);
             Assert.True(res);
         }
+        [Fact]
+        public void TestUserData()
+        {
+            Thread.Sleep(100);
+            UserData userData = new UserData
+            {
+                Email = "abcd1234@gmail.com",
+                Password = "abcd@4321",
+                RepeatPassword = "abcd@4321"
+            };
+            Assert.Equal("abcd1234@gmail.com", userData.Email);
+            Assert.Equal("abcd@4321", userData.Password);
+            Assert.Equal("abcd@4321", userData.RepeatPassword);
+        }
     }
 }
