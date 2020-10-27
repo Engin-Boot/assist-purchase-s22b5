@@ -4,6 +4,7 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 import { AppComponent } from './app.component';
 import { CustomerproductComponent } from './customerproduct/customerproduct.component';
 import { DetailcustomerComponent } from './detailcustomer/detailcustomer.component';
+import { FilterComponent } from './filter/filter.component';
 import { HomeComponent } from './home/home.component';
 import { InterestedcustomerComponent } from './interestedcustomer/interestedcustomer.component';
 import { ProductComponent } from './product/product.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'customerproduct',component:CustomerproductComponent},
   {path:'detailcustomer',component:DetailcustomerComponent},
   {path:'interestedcustomer',component:InterestedcustomerComponent},
+  {path:'filter',component:FilterComponent},  
   {path: '' , component: HomeComponent}
 ];
 

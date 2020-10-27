@@ -14,6 +14,8 @@ import { UpdateproductComponent } from './updateproduct/updateproduct.component'
 import { CustomerproductComponent } from './customerproduct/customerproduct.component';
 import { DetailcustomerComponent } from './detailcustomer/detailcustomer.component';
 import { InterestedcustomerComponent } from './interestedcustomer/interestedcustomer.component';
+import { FilterComponent } from './filter/filter.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { InterestedcustomerComponent } from './interestedcustomer/interestedcust
     UpdateproductComponent,
     CustomerproductComponent,
     DetailcustomerComponent,
-    InterestedcustomerComponent
+    InterestedcustomerComponent,
+    FilterComponent
+   
   ],
   imports: [
     BrowserModule,
