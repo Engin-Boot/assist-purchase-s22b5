@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { SignupService } from '../service/signup.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-interestedcustomer',
+  templateUrl: './interestedcustomer.component.html',
+  styleUrls: ['./interestedcustomer.component.css']
 })
-export class ProductComponent implements OnInit {
-
+export class InterestedcustomerComponent implements OnInit {
   title = 'AssistPurchase';
   list=[];
   referenceForm: FormGroup;
@@ -23,27 +22,15 @@ export class ProductComponent implements OnInit {
     
   }
   
-  
-
- 
-
   fetchList(){
-    this.panservice.getList().subscribe((result)=>{
+    this.panservice.getList2().subscribe((result)=>{
       this.list=result;
       console.log(result);
     })
   }
   onSubmit(){
     
-  this.router.navigate(['./home'])
+  this.router.navigate(['./product'])
 }
-onSubmit2(){
-  this.router.navigate(['./addproduct'])
-}
-onSubmit3(){
-  this.router.navigate(['./updateproduct'])
-}
-onSubmit4(){
-  this.router.navigate(['./interestedcustomer'])
-}
+
 }

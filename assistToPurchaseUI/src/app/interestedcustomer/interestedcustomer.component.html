@@ -1,0 +1,36 @@
+<h1>Assist Purchase Portal</h1>
+<h2>   Interested Customer Details</h2>
+<head>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+  padding: 15px;
+}
+
+ 
+
+  </style>
+  </head>
+<body>
+<table style="width:10%">
+  <tr>
+    <th>ProductName</th>
+    <th>Email</th> 
+    <th>Phone Number</th>
+  </tr>
+<tr *ngFor="let prods of list">
+
+ 
+
+
+  <td>{{prods.productName }}</td>
+  <td>{{prods.email}}</td>
+  <td>{{prods.phoneNumber}}</td> 
+  
+</tr>
+</table>
+<button (click)="onSubmit()">Back</button>
+

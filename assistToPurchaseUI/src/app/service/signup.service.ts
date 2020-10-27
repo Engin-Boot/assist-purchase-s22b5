@@ -10,7 +10,9 @@ export class SignupService {
 public getList():Observable<any>{
 return this.http.get("http://localhost:53951/api/products/");
 }
-
+public getList2():Observable<any>{
+  return this.http.get("http://localhost:53951/api/InterestedCustomer/");
+  }
 
  public submitList(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
@@ -29,5 +31,9 @@ return this.http.put<any>("http://localhost:53951/api/products/",data,httpOption
 public submitList2(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 return this.http.post<any>("http://localhost:53951/api/Signup/validate",data,httpOptions);
+}
+public submitList4(data):Observable<any>{
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+return this.http.post<any>("http://localhost:53951/api/InterestedCustomer/",data,httpOptions);
 }
 }

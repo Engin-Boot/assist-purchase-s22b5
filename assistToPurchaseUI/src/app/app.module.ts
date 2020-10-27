@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './service/signup.service';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { UpdateproductComponent } from './updateproduct/updateproduct.component';
+import { CustomerproductComponent } from './customerproduct/customerproduct.component';
+import { DetailcustomerComponent } from './detailcustomer/detailcustomer.component';
+import { InterestedcustomerComponent } from './interestedcustomer/interestedcustomer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { UpdateproductComponent } from './updateproduct/updateproduct.component'
     HomeComponent,
     ProductComponent,
     AddproductComponent,
-    UpdateproductComponent
+    UpdateproductComponent,
+    CustomerproductComponent,
+    DetailcustomerComponent,
+    InterestedcustomerComponent
   ],
   imports: [
     BrowserModule,

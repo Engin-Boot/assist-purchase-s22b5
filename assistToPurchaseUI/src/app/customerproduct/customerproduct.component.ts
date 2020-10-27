@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { SignupService } from '../service/signup.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-customerproduct',
+  templateUrl: './customerproduct.component.html',
+  styleUrls: ['./customerproduct.component.css']
 })
-export class ProductComponent implements OnInit {
+export class CustomerproductComponent implements OnInit {
 
   title = 'AssistPurchase';
   list=[];
@@ -16,17 +16,11 @@ export class ProductComponent implements OnInit {
   //[{"id":"MRN001","name":"Tom","password":"Tom123","email":"Tom@gmail.com"},{"id":"MRN002","name":"Hary","password":"Harry123","email":"Harry@gmail.com"}];
   constructor(@Inject("logger") loggerService:any,private panservice:SignupService,private router:Router) { }
 
-  
-
   ngOnInit(): void {
     this.fetchList();
     
   }
   
-  
-
- 
-
   fetchList(){
     this.panservice.getList().subscribe((result)=>{
       this.list=result;
@@ -35,15 +29,7 @@ export class ProductComponent implements OnInit {
   }
   onSubmit(){
     
-  this.router.navigate(['./home'])
+  this.router.navigate(['./detailcustomer'])
 }
-onSubmit2(){
-  this.router.navigate(['./addproduct'])
-}
-onSubmit3(){
-  this.router.navigate(['./updateproduct'])
-}
-onSubmit4(){
-  this.router.navigate(['./interestedcustomer'])
-}
+
 }

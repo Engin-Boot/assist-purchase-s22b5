@@ -16,6 +16,7 @@ namespace ChatAPI
             services.AddControllers();
             services.AddSingleton<IProductManagement, ProductManagementSqLite>();
             services.AddSingleton<ISignup, SignupImpl>();
+            services.AddSingleton<IInterestedCustomer, InterestedCustomerImpl>();
             services.AddCors();
 
         }
