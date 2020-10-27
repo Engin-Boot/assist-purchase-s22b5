@@ -15,6 +15,7 @@ import { CustomerproductComponent } from './customerproduct/customerproduct.comp
 import { DetailcustomerComponent } from './detailcustomer/detailcustomer.component';
 import { InterestedcustomerComponent } from './interestedcustomer/interestedcustomer.component';
 import { FilterComponent } from './filter/filter.component';
+import { FirstpageComponent } from './firstpage/firstpage.component';
 
 
 @NgModule({
@@ -28,8 +29,9 @@ import { FilterComponent } from './filter/filter.component';
     CustomerproductComponent,
     DetailcustomerComponent,
     InterestedcustomerComponent,
-    FilterComponent
-   
+    FilterComponent,
+    FirstpageComponent,
+ 
   ],
   imports: [
     BrowserModule,
