@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataModel;
@@ -28,9 +29,9 @@ namespace ChatAPI.Controllers
         }
         // POST api/<SignupController>
         [HttpPost]
-        public void Post([FromBody] DataModel.UserData value)
+        public HttpStatusCode AddUser([FromBody] DataModel.UserData value)
         {
-            signup.RegisterUser(value);
+            return signup.RegisterUser(value);
         }
 
     }

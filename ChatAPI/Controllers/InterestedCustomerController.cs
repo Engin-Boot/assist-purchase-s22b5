@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -35,9 +36,9 @@ namespace ChatAPI.Controllers
 
         // POST api/<InterestedCustomerController>
         [HttpPost]
-        public void Post([FromBody] DataModel.CustomerDetails value)
+        public HttpStatusCode AddCustomer([FromBody] DataModel.CustomerDetails value)
         {
-            _interestedCustomer.InterestedCustomer(value);
+            return _interestedCustomer.InterestedCustomer(value);
         }
 
     }

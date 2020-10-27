@@ -18,7 +18,7 @@ namespace DataAccessLayer
             var cmd = new SQLiteCommand(con)
             {
                 CommandText =
-                       @"INSERT INTO Customer(productName,email,phoneNumber) 
+                       @"INSERT INTO customer(productName,email,phoneNumber) 
                                     VALUES
                                     ('" + customer.ProductName + "','" + customer.Email + "','" + customer.PhoneNumber+ "')"
             };
