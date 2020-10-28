@@ -9,6 +9,7 @@ import { SignupService } from '../service/signup.service';
   styleUrls: ['./updateproduct.component.css']
 })
 export class UpdateproductComponent implements OnInit {
+  errorMessage=""
 
   constructor(@Inject("logger") loggerService:any,private panservice:SignupService,private router:Router) { }
   referenceForm: FormGroup;
@@ -36,7 +37,8 @@ export class UpdateproductComponent implements OnInit {
 
     },error=>{
       });
-this.router.navigate(['./product'])
+      this.errorMessage="Product Details Updated Successfully";
+this.router.navigate(['./updateproduct'])
   }
   onSubmit2(){
     this.router.navigate(['./product'])

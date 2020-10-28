@@ -42,5 +42,8 @@ export class HomeComponent implements OnInit {
     this.errorMessage="Invalid Credentials";
  
   }
+  onSubmit4(){
+    this.router.navigate(['/firstpage']);
+  }
  
 }

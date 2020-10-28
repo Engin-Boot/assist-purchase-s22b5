@@ -12,6 +12,7 @@ export class AddproductComponent implements OnInit {
 
   constructor(@Inject("logger") loggerService:any,private panservice:SignupService,private router:Router) { }
   referenceForm: FormGroup;
+  errorMessage=""
   ngOnInit(): void {
     this.initializeForm();
   }
@@ -29,14 +30,18 @@ export class AddproductComponent implements OnInit {
     });
     }
   onSubmit(){
-    console.log(this.referenceForm.value);
+    console.log(this.referenceForm.get("productname").value)
+    if(this.referenceForm.get("productname").value==null){
+      this.errorMessage="Product Name Should not be Empty ";
+    }
     this.panservice.addProduct(this.referenceForm.value).subscribe((result)=>{
 
  
 
     },error=>{
       });
-this.router.navigate(['./product'])
+      this.errorMessage="Product Added Successfully";
+this.router.navigate(['./addproduct'])
   }
   onSubmit2(){
     this.router.navigate(['./product'])
