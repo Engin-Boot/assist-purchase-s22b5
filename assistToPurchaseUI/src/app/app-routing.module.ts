@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { AppComponent } from './app.component';
 import { CustomerproductComponent } from './customerproduct/customerproduct.component';
+import { DeleteproductComponent } from './deleteproduct/deleteproduct.component';
 import { DetailcustomerComponent } from './detailcustomer/detailcustomer.component';
 import { FilterComponent } from './filter/filter.component';
 import { FirstpageComponent } from './firstpage/firstpage.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'interestedcustomer',component:InterestedcustomerComponent},
   {path:'filter',component:FilterComponent}, 
   {path:'firstpage',component:FirstpageComponent},
+  {path:'deleteproduct',component:DeleteproductComponent},
   {path: '' , component: FirstpageComponent}
 ];
 

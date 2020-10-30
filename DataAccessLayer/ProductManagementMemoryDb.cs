@@ -69,10 +69,10 @@ namespace DataAccessLayer
 
             return max + 1;
         }
-        public HttpStatusCode RemoveProduct(ProductInfo product)
+        public HttpStatusCode RemoveProduct(int id)
         {
             
-            foreach (var products in Db.Where(products => products.Id == product.Id))
+            foreach (var products in Db.Where(products => products.Id == id))
             {
                 Db.Remove(products);
                 return HttpStatusCode.OK;

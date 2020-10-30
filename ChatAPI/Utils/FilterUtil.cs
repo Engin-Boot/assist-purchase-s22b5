@@ -17,9 +17,7 @@ namespace ChatAPI.Utils
         {
             var products = _productDb.GetAllProducts();
 
-            var filteredProducts = FilterByPortability(filtersList.IsPortable, products);
-
-            //filteredProducts = FilterByMeasurements(filtersList.Measurements, filteredProducts);
+            var filteredProducts = FilterByPortability(filtersList.IsPortable, products);           
 
             filteredProducts = FilterByWeight(filtersList.MinWeight, filtersList.MaxWeight, filteredProducts);
 

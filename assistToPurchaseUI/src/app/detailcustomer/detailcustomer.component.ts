@@ -44,7 +44,7 @@ this.panservice.submitList4(this.referenceForm.value).subscribe((result)=>{
  
 },error=>{
   });
-  this.errorMessage="Interest Submitted Successfully";
+  this.errorMessage="Interest Submitted ,Thank you for your Interest";
   this.router.navigate(['./detailcustomer'])
 }
 onSubmit2(){

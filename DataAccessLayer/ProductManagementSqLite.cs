@@ -43,18 +43,7 @@ namespace DataAccessLayer
 
                 cmd.ExecuteNonQuery();
 
-              /*  foreach (var newMeasurement in product.Measurement)
-                {
-                    cmd.CommandText = @"INSERT INTO MonitoringMeasurements( productName, measurements) 
-                                        VALUES
-                                        (@productName, @measurements)";
-                    cmd.Parameters.AddWithValue("@productName", product.ProductName);
-                    cmd.Parameters.AddWithValue("@measurements", newMeasurement);
-                    cmd.Prepare();
-
-                    cmd.ExecuteNonQuery();
-
-                }*/
+              
 
             }
             catch (Exception)
@@ -69,7 +58,7 @@ namespace DataAccessLayer
             return HttpStatusCode.OK;
         }
 
-        public HttpStatusCode RemoveProduct(ProductInfo product)
+        public HttpStatusCode RemoveProduct(int id)
         {
             var con = GetConnection();
             try
@@ -78,7 +67,7 @@ namespace DataAccessLayer
                 con.Open();
                 var cmd = new SQLiteCommand(con)
                 {
-                    CommandText = $@"DELETE FROM MonitoringProduct WHERE id='{product.Id}'"
+                    CommandText = $@"DELETE FROM MonitoringProduct WHERE id='{id}'"
                 };
                 var rows=cmd.ExecuteNonQuery();
                 if (rows == 0)
@@ -86,8 +75,7 @@ namespace DataAccessLayer
                     return HttpStatusCode.BadRequest;
                 }
 
-               /* cmd.CommandText = $@"DELETE FROM MonitoringMeasurements WHERE productName='{product.ProductName}'";
-                cmd.ExecuteNonQuery();*/
+               
 
 
             }
@@ -121,20 +109,7 @@ namespace DataAccessLayer
 
             while (rdr.Read())
             {
-               /* var stm2 = @"SELECT productName, measurements 
-                         FROM MonitoringMeasurements";
-                using var cmd2 = new SQLiteCommand(stm2, con);
-                using var rdr2 = cmd2.ExecuteReader();
-
-                var measurements = new List<string>();
-                var prodName = rdr.GetString(1);
-                while (rdr2.Read())
-                {
-                    if (rdr2.GetString(0) == prodName)
-                    {
-                        measurements.Add(rdr2.GetString(1));
-                    }
-                }*/
+               
                 ProductInfo productInfo=new ProductInfo
                 {
                     Id = rdr.GetInt32(0),
@@ -156,7 +131,7 @@ namespace DataAccessLayer
         public HttpStatusCode UpdateProduct(ProductInfo product)
         {
             
-            var removeStatusCode=RemoveProduct(product); 
+            var removeStatusCode=RemoveProduct(product.Id); 
             var addStatusCode=AddProduct(product);
             if(removeStatusCode==HttpStatusCode.OK && addStatusCode==HttpStatusCode.OK)
                 return HttpStatusCode.OK;

@@ -28,7 +28,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             var testProd = Helper.GetProductDataModelObject(num,"Test"+num);
             Assert.True(_productManagement.AddProduct(testProd)==HttpStatusCode.OK);
             //Clean Up
-            _productManagement.RemoveProduct(testProd);
+            _productManagement.RemoveProduct(testProd.Id);
         }
         [Fact]
         public void TestInvalidProductDataAddition()
@@ -43,10 +43,10 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             var testProd = Helper.GetProductDataModelObject(num, "test"+num);
             //Case 1
             _productManagement.AddProduct(testProd);
-            Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.OK);
+            Assert.True(_productManagement.RemoveProduct(testProd.Id)==HttpStatusCode.OK);
             //Case 2
             testProd= new ProductInfo();
-            Assert.True(_productManagement.RemoveProduct(testProd)==HttpStatusCode.BadRequest);
+            Assert.True(_productManagement.RemoveProduct(testProd.Id)==HttpStatusCode.BadRequest);
         }
         [Fact]
         public void TestUpdateProduct()
@@ -58,7 +58,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             testProd.Portable = false;
             Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.OK);
             //Case 1-Clean Up
-            _productManagement.RemoveProduct(testProd);
+            _productManagement.RemoveProduct(testProd.Id);
 
             //Case 2
             testProd = new ProductInfo();

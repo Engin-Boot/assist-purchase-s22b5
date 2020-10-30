@@ -31,7 +31,7 @@ export class AddproductComponent implements OnInit {
     }
   onSubmit(){
     console.log(this.referenceForm.get("productname").value)
-    if(this.referenceForm.get("productname").value==null){
+    if(this.referenceForm.get("productname").value==""){
       this.errorMessage="Product Name Should not be Empty ";
     }
     this.panservice.addProduct(this.referenceForm.value).subscribe((result)=>{
@@ -40,7 +40,10 @@ export class AddproductComponent implements OnInit {
 
     },error=>{
       });
-      this.errorMessage="Product Added Successfully";
+      if(this.referenceForm.get("productname").value!="")
+        this.errorMessage="Product Added Successfully";
+      
+      
 this.router.navigate(['./addproduct'])
   }
   onSubmit2(){

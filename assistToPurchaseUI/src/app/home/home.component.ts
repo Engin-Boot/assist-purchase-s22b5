@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   onSubmit3(){
     console.log(this.referenceForm.get("email").value);
     console.log(this.referenceForm.get("password").value);
-    if(this.referenceForm.get("email").value=="admin" && this.referenceForm.get("password").value=="admin"){
+    if(this.referenceForm.get("email").value=="admin@email.com" && this.referenceForm.get("password").value=="admin"){
       this.errorMessage="Login Successfull";
       this.router.navigate(['/product']);
     }

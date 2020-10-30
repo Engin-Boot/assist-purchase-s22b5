@@ -43,6 +43,9 @@ onSubmit2(){
 onSubmit3(){
   this.router.navigate(['./updateproduct'])
 }
+onSubmit5(){
+  this.router.navigate(['./deleteproduct'])
+}
 onSubmit4(){
   this.router.navigate(['./interestedcustomer'])
 }

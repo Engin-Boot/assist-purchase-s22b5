@@ -26,7 +26,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             var testProd = Helper.GetProductDataModelObject(num, "Test"+num);
             Assert.True(_productManagement.AddProduct(testProd) == HttpStatusCode.OK);
             //Clean Up
-            _productManagement.RemoveProduct(testProd);
+            _productManagement.RemoveProduct(testProd.Id);
 
         }
         [Fact]
@@ -44,7 +44,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             var num = RandomNumberGenerator.GetInt32(1000) + 10;
             var testProd = Helper.GetProductDataModelObject(num, "Test"+num);
             _productManagement.AddProduct(testProd);
-            Assert.True(_productManagement.RemoveProduct(testProd) == HttpStatusCode.OK);
+            Assert.True(_productManagement.RemoveProduct(testProd.Id) == HttpStatusCode.OK);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
         {
             Thread.Sleep(300);
             var testProd = Helper.GetProductDataModelObject(-999, "Test42");
-            Assert.True(_productManagement.RemoveProduct(testProd) == HttpStatusCode.BadRequest);
+            Assert.True(_productManagement.RemoveProduct(testProd.Id) == HttpStatusCode.BadRequest);
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace AssistPurchaseTest.DataAccessLayerTest
             Assert.True(_productManagement.UpdateProduct(testProd) == HttpStatusCode.OK);
 
             //Clean Up
-            _productManagement.RemoveProduct(testProd);
+            _productManagement.RemoveProduct(testProd.Id);
         }
 
         [Fact]

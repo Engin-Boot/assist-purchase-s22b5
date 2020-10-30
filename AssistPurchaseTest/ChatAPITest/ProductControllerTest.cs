@@ -31,7 +31,7 @@ namespace AssistPurchaseTest.ChatAPITest
             var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             Assert.True(_productController.AddProduct(testProd)==HttpStatusCode.OK);
             //Clean Up
-            _productController.RemoveProduct(testProd);
+            _productController.RemoveProduct(testProd.Id);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace AssistPurchaseTest.ChatAPITest
             var testProd = Helper.GetProductDataModelObject(num, "test" + num);
             _productController.AddProduct(testProd);
             
-            Assert.True(_productController.RemoveProduct(testProd)==HttpStatusCode.OK);
+            Assert.True(_productController.RemoveProduct(testProd.Id)==HttpStatusCode.OK);
         }
         [Fact]
         public void TestUpdateMethod()
@@ -64,7 +64,7 @@ namespace AssistPurchaseTest.ChatAPITest
             
             Assert.True(_productController.UpdateProduct(testProd)==HttpStatusCode.OK);
             //Clean Up
-            _productController.RemoveProduct(testProd);
+            _productController.RemoveProduct(testProd.Id);
         }
     }
 }

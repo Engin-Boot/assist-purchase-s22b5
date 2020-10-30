@@ -2,6 +2,12 @@
 {
 	background-color: green;
 	color: white;
-	width: 140px;
+	width: 200px;
 	height: 50px;
+	opacity:1;
 }
+h1,h2 {text-align: center;}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+  }

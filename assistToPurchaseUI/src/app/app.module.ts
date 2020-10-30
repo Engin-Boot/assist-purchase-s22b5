@@ -16,6 +16,7 @@ import { DetailcustomerComponent } from './detailcustomer/detailcustomer.compone
 import { InterestedcustomerComponent } from './interestedcustomer/interestedcustomer.component';
 import { FilterComponent } from './filter/filter.component';
 import { FirstpageComponent } from './firstpage/firstpage.component';
+import { DeleteproductComponent } from './deleteproduct/deleteproduct.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FirstpageComponent } from './firstpage/firstpage.component';
     InterestedcustomerComponent,
     FilterComponent,
     FirstpageComponent,
+    DeleteproductComponent,
  
   ],
   imports: [

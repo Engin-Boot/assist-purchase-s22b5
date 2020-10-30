@@ -46,6 +46,10 @@ public submitList2(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 return this.http.post<any>("http://localhost:53951/api/Signup/validate",data,httpOptions);
 }
+public submitList3(data):Observable<any>{
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+return this.http.delete<any>("http://localhost:53951/api/products/"+data,httpOptions);
+}
 public submitList4(data):Observable<any>{
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 return this.http.post<any>("http://localhost:53951/api/InterestedCustomer/",data,httpOptions);

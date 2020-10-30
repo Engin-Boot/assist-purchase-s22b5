@@ -17,7 +17,7 @@ namespace ChatAPI.Controllers
         public ProductController(IProductManagement product)
         {
             _product = product;
-           
+
         }
         [HttpGet]
         public IActionResult Get()
@@ -26,11 +26,11 @@ namespace ChatAPI.Controllers
             {
                 return Ok(_product.GetAllProducts());
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
-            
+
         }
         [HttpPost]
         public HttpStatusCode AddProduct([FromBody] ProductInfo product)
@@ -44,10 +44,10 @@ namespace ChatAPI.Controllers
             return _product.UpdateProduct(product);
         }
 
-        [HttpDelete]
-        public HttpStatusCode RemoveProduct([FromBody] ProductInfo product)
+        [HttpDelete("{id}")]
+        public HttpStatusCode RemoveProduct(int id)
         {
-            return _product.RemoveProduct(product);
+            return _product.RemoveProduct(id);
         }
     }
     
